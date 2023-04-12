@@ -2,26 +2,11 @@ import datetime as pippo
 
 # commento: questo è un esercizio in python
 
-#nome = "Enrico"
+nome = "Enrico"
 
-nome = input("Come ti chiami?")
+print(f'tu ti chiami {nome}')
 
-test= input("Sei sicuro? ")
+ss = 'tu tu chiami '
+ss = ss + nome
 
-if (test=='n'):
-	nome = input("Ripeti ")
-
-	print("Nome verificato")
-	ssse="Ho verifocato la if"
-	print(ssse)
-
-
-
-orario = pippo.datetime.now()
-orarioOK = (orario.hour, orario.minute, orario.second)
-
-print("ciao, Corso di Python")
-print(f"il tuo nome è {nome}")
-print(f"Sono le {orario}")
-print(f"in realtà sono le {orarioOK}")
-
+print(ss)
