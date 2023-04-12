@@ -29,6 +29,6 @@ if (test=="no"):
     if (test2=="si"):
         print("Ciao Giobbe")
     else:
-        print(tuoNome)    
+        print(f"Ciao, {tuoNome}")    
 else:
     pass
