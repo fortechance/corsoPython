@@ -1,0 +1,2 @@
+In questo esempio, il programma chiede all'utente di inserire il loro nome, cognome, età e città tramite la funzione input(), e poi stampa i dati anagrafici dell'utente utilizzando la funzione print().
+Naturalmente, il programma potrebbe essere ulteriormente personalizzato per soddisfare esigenze specifiche.
