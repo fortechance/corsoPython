@@ -1,4 +1,5 @@
 import datetime
+
 nome = "Cattivix"
 orario = datetime.datetime.now()
 #obj = datetime.now()
@@ -19,6 +20,11 @@ print(f"sono le {orario}")
 #print(f"in realtà sono le {orarioOK}")  #in questo caso uso  un unica stringa
 print("sono le:", orario)   #in questo caso uso la tupla
 
+s=f'fsgds'   # stringa forattata, per passare le variabili
+# tutto quello che segue è come scrivere print(f"tu ti chiami" {nome})
+ss = 'tu ti chiami'
+ss = ss + nome
+print(ss)
 
 #Domanda: posso richiamare la variabile puntualmente oppure con "f"
 #import datetime 
