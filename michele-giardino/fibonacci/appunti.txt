@@ -1,0 +1,4 @@
+In questo programma, chiediamo all'utente di inserire il numero di elementi della successione che vuole calcolare.
+Poi, inizializziamo i primi due numeri della successione a 0 e 1, e stampiamo questi due numeri.
+Successivamente, utilizziamo un ciclo for per calcolare e stampare gli elementi successivi della successione di Fibonacci.
+All'interno del ciclo for, utilizziamo una variabile c per calcolare l'elemento successivo come somma dei due elementi precedenti, e poi spostiamo a e b in avanti di una posizione per calcolare il prossimo elemento.
