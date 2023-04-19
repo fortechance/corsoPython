@@ -14,5 +14,6 @@ print(b)
 for i in range(2, n):
     c = a + b
     print(c)
+    # Dopo aver stampato c dati dei nuovi valori ad a e b
     a = b
     b = c
