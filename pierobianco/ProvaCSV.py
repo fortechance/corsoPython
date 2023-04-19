@@ -1,4 +1,5 @@
 # Decidere il nome del file.
+import json
 
 NomeFile = 'pierobianco/CSVOrigine.csv'
 Separatore = ';'
@@ -13,13 +14,16 @@ righe = buffer.split('\n')
 print(righe)
 print(len(righe))
 
-priKey = 0
+priKey = 1
 dictDati = {}
 dictCampi = {}
+
+DaScrivere = ""
 
 for riga in righe:
     
     if (len(riga) > 1):
+        #dictCampi = {}
         colonne = riga.split(Separatore)
         if len(colonne) != 4:
             print("Separatore errato")
@@ -28,21 +32,25 @@ for riga in righe:
                 #titoli delle colonne, li salto
                 pass 
             else:
-                priKey += 1
+                dictDati[priKey]={}
                 print(f'chiave: {priKey} -> contenuto: {colonne}')
-
+                #dictCampi['Key'] = priKey
                 dictCampi['Cognome'] = colonne[0]
                 dictCampi['Nome'] = colonne[1]
                 dictCampi['Professione'] = colonne[2]
-                dictCampi['eta'] = colonne[3]
+                dictCampi['Eta'] = colonne[3]
+                dictDati[priKey].update(dictCampi)
 
-        dictDati[priKey] = dictCampi
+                priKey += 1
 
-
+            DaScrivere = json.dumps(dictDati)
+            print(DaScrivere)
+            with open(NomeFile + '.json','w') as f:
+                f.write(DaScrivere)
 
     else:
         #print('trovata riga vuota')
         print(['None', 'None', 'None', 'None'])
 
-print(dictDati)
+print(DaScrivere)
 
