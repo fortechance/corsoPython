@@ -18,6 +18,8 @@ priKey = 0                                                          # definisco 
 dictDati = {}                                                       # definisco un dizionario dati
 dictCampi = {}                                                      # definisco un dizionario campi
 
+DaScrivere =""
+
 for riga in righe:                                                  # per ogni riga
     
     if (len(riga) > 1):                                             # se la lunghezza è maggiore di 1
@@ -48,3 +50,4 @@ for riga in righe:                                                  # per ogni r
         #print('trovata riga vuota')
         print(['None', 'None', 'None', 'None'])
 
+print(DaScrivere)
