@@ -15,6 +15,9 @@ with open('devices.txt') as routers:
         print ('Connecting to ' + IP)
         print('-'*79)
         output = net_connect.send_command('sh ip int brief')
+        output = net_connect.send_command('sh ip route 93.62.232.0')
+        output = net_connect.send_command('sh ip prefix-list RedStaticBGP-prefer-CAR')
+     
         print(output)
         print()
         print('-'*79)
