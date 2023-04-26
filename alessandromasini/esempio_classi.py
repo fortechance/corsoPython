@@ -6,7 +6,7 @@ class questionario():
     def __init__(self):
 
         self.nome = ''
-        self.cognome = ''
+        self.cognome = '' 
 
 
 
