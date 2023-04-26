@@ -12,7 +12,7 @@ def funzioneFibonacci(numero):    #funzione fibonacci con N volte che deve cicla
         secondo = fibonacci
 
         print(fibonacci)         #printa mano a mano che li calcola
-        sequenza.append(fibonacci)    #i dati calcolati li accoda (aoppebd) ad una sequenza
+        sequenza.append(fibonacci)    #i dati calcolati li accoda (append) ad una sequenza
     return sequenza
 
 
