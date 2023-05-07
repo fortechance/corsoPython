@@ -67,7 +67,7 @@ class quartiere():
         self.condomini = {}
         with open(csvCondominio) as f:
             buffer = f.read ()
-#######################
+########################
 #leggiamo il file csv le cui righe sono separate da CR/LF (carriage return / line feed come si faceva con la macchina da scrivere)
 #i campi sono separati da 
             appartamenti = buffer.split('\n')
