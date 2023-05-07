@@ -1,23 +1,23 @@
 # definire la classe casa
-class casa:      #la class casa avrà un costruttore che avrà come parametro self, piano , denominazione ....)
+class casa():      #la class casa avrà un costruttore che avrà come parametro self, piano , denominazione ....)
 
     def __init__(self, piano, denominazione, mq):
         #inizializziamo (rendiamo pubbliche all'istanza)
         self.piano = piano
         self.denominazione = denominazione
-        self.mq = mq 
+        self.mq = int(mq)
 
 #ora voglio attico che eredita da casa:
 class attico(casa):
 
     def __init__(self, piano, denominazione, mq, mqterrazzo):
 
-        casa.__init__(piano,denominazione,mq)  #chiamo il costruttore di casa che tanto ho ereditato 
+        casa.__init__(piano, denominazione, mq)  #chiamo il costruttore di casa che tanto ho ereditato 
         self.mqterrazzo = mqterrazzo           # in più gli carico qualcosa di esxclusivo (mqterrazzo)
 
 class condominio():
 
-    def  __init__(self, nome):
+    def __init__(self, nome):
         #il mio costruttore vorrà un elenco come lista
         self.elencoCase = {} #qui dentro ci metto tutte le case componenti il condominio
         #devo vedere quanti mqaggiungo per completare i tot mq delcondominio
@@ -64,6 +64,7 @@ class quartiere():
  #       f.close() #dato che il file viene chiuso nel terzo STEP se qualcosa andasse male nel primo step il file rimarrebbe aperto
 
         #2) apro il file e lo leggo finchè è aperto poi termino il tutto ed il file è chiuso in automatico
+        self.condomini = {}
         with open(csvCondominio) as f:
             buffer = f.read ()
 #######################
@@ -88,10 +89,12 @@ class quartiere():
         #è ora di creare le istanze
                 #se non esiste il condominio
                 if ( con in self.condomini.keys()):
+                    pass
+                else:
                     #lo creo chiamandolo con il dato che ho letto:
                     self.condomini[con] = condominio(con)
 
-                    #adesso aggiungo la casa con gli altri dati che mi sono rimasti nella classe self.condomini
-                    #c = casa(piano, den, mq)
-                    self.condomini[con].aggiungiCasa(casa(piano, den, mq))
+                #adesso aggiungo la casa con gli altri dati che mi sono rimasti nella classe self.condomini
+                #c = casa(piano, den, mq)
+                self.condomini[con].aggiungiCasa(casa(piano, den, mq))
 #ora ho messo in quartirere tutti i condomini del csv e tutte le case divise per condominio,
