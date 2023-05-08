@@ -1,0 +1,19 @@
+Accessi Python:
+
+Server: python.hostingstudenti.fortechance.com
+User: python@hostingstudenti.fortechance.com
+Pass: 4Qa!qB5y
+
+URL di riferimento per il sito:
+
+http://python.hostingstudenti.fortechance.com
+
+Database:
+
+nome db: c73db
+usern:   c73db
+pass:    ocGB@QkcA8
+
+FTP:
+username: python
+password: Hy@W7q8oV
