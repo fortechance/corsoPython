@@ -29,8 +29,8 @@ class condominio():
         except:# se non aggiunge non faccio nulla
             pass
             
-    def calcoloMillesimi(self, denom):
-        mq = self.elencoCase[denom].mq # al dizionario elencoscase assegno alla chiave denom il valore mq
+    def calcoloMillesimi(self, denominazione):
+        mq = self.elencoCase[denominazione].mq # al dizionario elencoscase assegno alla chiave denom il valore mq
         millesimi = 1000*mq/self.totMq #calcolo dei millesimi
         
         return millesimi 
@@ -41,24 +41,24 @@ class quartiere():
         with open(csvCondominio) as f: #apro il file e lo chiudo quando non viene utilizzato
             buffer = f.read()
             
-            appartamenti = buffer.split("/n") #divido per le linee del csv
+            appartamenti = buffer.split("\n") #divido per le linee del csv
             
             for app in appartamenti:
-                dati = app.split(";") #divido la linea per le tabulazioni presenti
+                dati = app.split(";") #divido la linea per :; presenti
                 #dati sarà un array (lista) di campi
                 
                 idCond = dati[0] #dati[0] = idCondominio da csv (sarà la chiave del dizionario condomini)
                 piano = dati[1] #dati[1] = Piano (Valori da passare alla classe casa)
                 denom = dati[2] #dati[2] = Denom
                 mq = dati[3] #dati[3] = MQ
+                print(mq)
                 
-                if (idCond in self.condomini.keys):#se il condominio non esiste, lo creo
+                if (idCond in self.condomini.keys()):#se il condominio non esiste, lo creo
                     pass
                 else:
                     #se il condominio non esiste, lo creo
                     self.condomini[idCond] = condominio(idCond)
-                    #aggiungo la casa
-                c = casa(piano, denom, mq)
-                self.condomini[idCond].aggiungiCasa(c)
+                    #aggiungo la casa con il metodo aggiungicasa
+                self.condomini[idCond].aggiungiCasa(casa(piano, denom, mq))
                 
         
