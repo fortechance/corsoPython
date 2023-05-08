@@ -7,7 +7,6 @@ password = getpass.getpass()
 enablepassword = getpass.getpass()  #password enable
 
 tn = telnetlib.Telnet(HOST)
-
 tn.read_until(b"Username: ")
 tn.write(user.encode('ascii') + b"\n")
 if password:
