@@ -13,6 +13,9 @@ class cliente():
         self.sconto = sconto
         self.codcliente = self.denominazione[0,3]
         
+        if (len(self.piva) != 11):
+            raise Exception('La partita iva è sbagliata')
+
         msec = datetime.datetime.microsecond
         self.codcliente += str(msec)
 
