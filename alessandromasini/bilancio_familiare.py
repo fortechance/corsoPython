@@ -39,7 +39,7 @@ class uscite():
     def calcolo_uscite(self):
 
         totale = 0
-        for i in self.totale_in:
+        for i in self.totale_out:
             totale += i
             
         return totale
