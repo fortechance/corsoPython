@@ -1,3 +1,7 @@
+# ipotesi post progettazione di gruppo
+#Avevo considerato come oggetto prinvipale l'oggettomovimento senza pensare al wallet
+#ma più o meno tutti i parametri necessari li avevo ipotizzati associandoli alla class obj_movimento
+
 ###OGGETTI PRINCIPALI
 
 class obj_movimento():
