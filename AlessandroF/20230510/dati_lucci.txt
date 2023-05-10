@@ -1,0 +1,71 @@
+#PROFILO UTENTE
+
+CATEGORIE DI PERSONE
+- Single
+- Coppie giovani
+- Genitore unico con figli a carico
+- Famiglia con bambini
+- Pensionati
+
+ANIMALI
+- Si
+- No
+
+IMPIEGO
+- Lavoratore dipendente
+- Autonomo/libero professionista
+- Pensionato
+- Non lavoratore/Disoccupato
+#--------------------------------------------------------
+
+#crezione voci  non default
+
+#----------------------------------------------------
+################
+# IN&OUT
+################
+
+## IN
+
+ENTRATE VARIE
+- Affitti
+- Assegno unico
+- Pensione invalidità
+- Cedole/vendita titoli
+- Alimenti
+
+### OUT
+PAGAMENTI ELETTRONICI
+- Buoni pasto
+- Satispay
+- Conto Welfare
+- Buono celiachia
+- Polizza sanitaria
+- Carta di credito
+
+
+
+######
+VOCI DI SPESA (**)
+(**) Nel prospetto dividere le varie categorie di spesa
+
+SPESE FISSE/COSTANTI
+- Mutuo/finanziamenti(rata fissa o variabile?)
+- Bollette
+- Assicurazioni
+- Alimentari
+- Auto
+- Palestra
+
+SPESE VARIABILI
+- Viaggi
+- Cene fuori
+- Shopping
+- Estetista/parrucchiere
+- Eventi/concerti/cinema
+- Regali
+
+
+INVESTIMENTI
+- Piani di accumulo
+- Versamenti ricorrenti
