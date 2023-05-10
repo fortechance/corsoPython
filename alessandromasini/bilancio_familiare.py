@@ -19,6 +19,7 @@ class entrate():
             totale += i
 
         return totale
+    
 
 
 
