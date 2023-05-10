@@ -15,5 +15,6 @@ class Tipowallwet():
 
 class Wallet():
     def __init__(self, nomewallet t:Tipowallwet, descrizione)
-        self.nomewallet = nomewallet
+        self.nomewallet = nomewallet  
+        #fai a casa
 
