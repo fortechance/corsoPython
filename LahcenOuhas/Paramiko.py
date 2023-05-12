@@ -1,6 +1,6 @@
 # script to connect to a Cisco device and run commands
 # by John Kull
-import filecmp 
+from filecmp import*
 host1 = '192.168.200.10'
 user = 'admin'
 secret = 'P@ssword'
