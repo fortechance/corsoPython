@@ -1,0 +1,19 @@
+codice,descrizione,segno
+1,stipendio,+
+2,pensione,+
+3,bolletta,-
+4,domiciliazione X,-
+5,pagamentocorso,-
+6,ricaricacartacreditoricaricabile,-
+7,riaddebitocartadicredito,+
+8,acquisto,-
+9,bonifico ingresso,+
+10,pagamento online,-
+11,spesa,-
+12,interessi conto,-
+13,dividendo azioni,+
+14,rimborso,+
+15,vendita oggetto,+
+16,spese conto,-
+17,ricaricacellulare, -
+18,alimentari,-
