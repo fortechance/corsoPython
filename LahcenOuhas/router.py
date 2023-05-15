@@ -1,4 +1,4 @@
-from netmiko import ConnectHandler
+from filecmp import ConnectHandler
 
 import re
 
@@ -25,8 +25,8 @@ f.close()
 #loop all ip addresses in ip_list
 for ip in ip_list:
     cisco = {
-    'device_type':'cisco_ios',
-    'ip':ip,
+    'device_type':'cisco_ios',  
+    'ip':ip,                # ip address
     'username':'cisco',     #ssh username
     'password':'cisco',  #ssh password
     'secret': 'cisco',   #ssh_enable_password
