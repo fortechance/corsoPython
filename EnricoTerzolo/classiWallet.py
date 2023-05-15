@@ -18,7 +18,9 @@ class wallet():
         pass
 
 class causale():
-    def __init__(self, descrizione, segno):
+    def __init__(self, codice, descrizione, segno):
+        
+        self.codicd = codice
         self.descrizione = descrizione
         self.segno = '+' if segno == '+' else '-'
 
@@ -30,22 +32,22 @@ class causali():
 
     def AddCausale(self, c:causale):
 
-        if self.CausaleExist(c.descrizione):
+        if self.CausaleExist(c):
             raise Exception('Causale Duplicata')
         else:
-            self.elencoCausali[c.descrizione] = c
+            self.elencoCausali[c.codice] = c
     
-    def CausaleExist(self, descrizione):
+    def CausaleExist(self, c:causale):
 
-        if descrizione in self.elencoCausali.keys():
+        if c.codice in self.elencoCausali.keys():
             return True
         else:
             return False
         
 class movimento():
-    def __init__(self,c:causale, importo, elencoCau):
+    def __init__(self,c:causale, importo, elencoCau:causali):
         
-        if (c.descrizione in elencoCau.elencoCausali.keys()):
+        if (elencoCau.CausaleExist(c)):
 
             self.causale = c
             self.importo = importo
@@ -55,12 +57,14 @@ class movimento():
         else:
             raise Exception(f'causale {c.descrizione} inesistente')
 
-        
-
 class bottino():
     def __init__(self):
 
         self.wallets = {}
 
-        def addWallet(w:wallet):
-            self.wallets[w.walletName] = w
+    def InitEntitaForti(self, fileCausali, fileUtenti, fileTipoWallet):
+        #devo leggere i CSV, poi devo metterli nel db
+        pass
+
+    def addWallet(self, w:wallet):
+        self.wallets[w.walletName] = w
