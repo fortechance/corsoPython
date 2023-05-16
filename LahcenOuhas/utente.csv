@@ -1,8 +1,8 @@
-CodUtente;nome;cognome;AnnoDiNascita
-100;Lahcen;ouhas;1997
-200;Marco;richichi;1991
-300;giorgio;lapiccirella;1997
-400;Ayoub;bouras;1994
-500;mourad;boumhdi;1995
+CodUtente;nome;cognome;età
+100;Lahcen;ouhas;26
+200;Marco;richichi;30
+300;giorgio;lapiccirella;26
+400;Ayoub;bouras;27
+500;mourad;boumhdi;28
 
 
