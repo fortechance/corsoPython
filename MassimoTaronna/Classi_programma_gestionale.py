@@ -1,6 +1,6 @@
 # definisco le classi per il programma di gestione spese/entrate
 
-import datetime
+import datetime import d
 
 class impiego():                        # definisco la classe della situazione lavorativa
 
@@ -16,11 +16,11 @@ class profilatura():                         # definisco la classe della situazi
 
 class utente():                         # definisco la classe dei nominativi 
 
-    def __init__(self, nome, cognome, IBAN, sit_lav:impiego, profil:profilatura):
+    def __init__(self, nome, cognome, data_nascita, luogo_nascita, cod_fisc, indirizzo, n_civico, CAP, citta, sit_lav:impiego, profil:profilatura):
         
         self.nome = nome
-        self.IBAN = IBAN
         self.cognome = cognome
+        self.
         self.impiego = sit_lav
         self.profilatura= profil
 
