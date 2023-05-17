@@ -1,0 +1,13 @@
+CODICE CAUSALE, DESCRIZIONE, SEGNO
+001, Mutuo, -
+002, Emolumenti, +
+003, Bolletta Luce, -
+004, Bolletta Gas, -
+005, Supermercato, -
+006, Rifornimento, -
+007, Fondi, -
+008, Shopping, -
+009, Mercato, -
+010, Meccanico, -
+011, Assicurazione, -
+012, Ristorante, -
