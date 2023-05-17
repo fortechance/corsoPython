@@ -1,0 +1,12 @@
+01;mediolanum;conto corrente
+02;mediolanum;carta di credito
+02;mediolanum;prepagata
+03;unicredit;conto corrente
+04;unicredit;carta di credito
+05;unicredit;prepagata
+06;cariparma;conto corrente
+07;cariparma;carta di credito
+08;cariparma;prepagata
+09;sanpaolo;conto corrente
+10;sanpaolo;carta di credito
+11;sanpaolo;prepagata
