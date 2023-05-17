@@ -1,14 +1,11 @@
-import json
-
-# a Python object (dict):
-x = {
-  "name": "John",
-  "age": 30,
-  "city": "New York"
-}
-
-# convert into JSON:
-y = json.dumps(x)
-
-# the result is a JSON string:
-print(y)
+import csv
+with open('file.csv', mode='r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    first = True
+    for riga in csv_reader:
+        if first:
+            #saltiamo la prima riga, quella di intestazione
+            first = False
+            continue
+        print(riga["Nome"], riga["Cognome"], "ha", riga["Età"], "anni")
+        #Mario Rossi ha 20 anni

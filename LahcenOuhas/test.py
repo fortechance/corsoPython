@@ -21,3 +21,25 @@ def bonus(self):
         print("salary increased to "+str(self.salary))
     else:
         print("no bonus added, salary is still " +str(self.salary))
+
+
+        -----------------------------------------------------------------------
+
+        class utente:
+
+  def __init_(self, CodUtente, nome, cognome, età):
+    self.nome = nome
+    self.cognome = cognome
+    self.età = età
+    self.CodUtente = CodUtente
+
+class causale:
+  def __init__(self, CODCAUSALE, DESCRIZIONE, SEGNO):
+    self.CODCAUSALE = CODCAUSALE
+    self.DESCRIZIONE = DESCRIZIONE
+    self.SEGNO = SEGNO
+
+class tipowallet:
+  def __init__(self, CodWallet, Wallet):
+    self.Codwallet = CodWallet
+    self.wallet = Wallet

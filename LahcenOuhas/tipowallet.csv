@@ -1,5 +1,4 @@
-CodWallet;Wallet
-100;ContoCorrenteRisparmio
-200;CartaDiCredito
-300;CartaPrepagata
-400;BuoniPasto
+codice;descrizione;tipo
+100;c/c sanpaolo;cc
+200;postepay;cc
+300;bancoposta;cc
