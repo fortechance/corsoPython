@@ -1,8 +1,8 @@
 codice; descrizione; tipo
-w01; Unicredit; conto_corrente
-w02; Unicredit; conto_titoli
-w03; VISA; carta_credito
-w04; VISA; carta_ricaricabile
-w05; Paypall; sistema_pagamento
-w06; Satispay; sistema_pagamento
-w07; Postepay; carta_ricaricabile
+001; Unicredit; conto_corrente
+002; Unicredit; conto_titoli
+003; VISA; carta_credito
+004; VISA; carta_ricaricabile
+005; Paypall; sistema_pagamento
+006; Satispay; sistema_pagamento
+007; Postepay; carta_ricaricabile
