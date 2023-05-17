@@ -1,5 +1,5 @@
 codice;descrizione;tipo
-01;unicredit;contobancario
-02;cariparma;contomutuo
-03;hype;cartaricaricabile
-04;postepay;cartadicredito
+001;unicredit;contobancario
+002;cariparma;contomutuo
+003;hype;cartaricaricabile
+004;postepay;cartadicredito
