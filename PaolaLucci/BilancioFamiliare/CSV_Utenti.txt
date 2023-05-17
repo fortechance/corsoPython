@@ -1,0 +1,13 @@
+CODICE UTENTE, NOME, COGNOME
+001, Paola, Lucci
+002, Vincenzo, Martino
+003, Francesco, Tocci
+004, Federica, Venanz
+005, Giulia, Liberati
+006, Federica, Amici
+007, Sergio, Vallino
+008, Roberto, Vincenti
+009, Matteo, Secchi
+010, Franco, Morena
+011, Sandra, Mantelli
+012, Giorgio, Donati
