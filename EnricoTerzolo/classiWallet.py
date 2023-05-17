@@ -1,5 +1,7 @@
+import os
+
 class utente():
-    def __init__(self, cognome, nome, indirizzo, citta,procincia):
+    def __init__(self, codice, nome, cognome):
         pass
 
 class tipoWallet():
@@ -61,10 +63,6 @@ class bottino():
     def __init__(self):
 
         self.wallets = {}
-
-    def InitEntitaForti(self, fileCausali, fileUtenti, fileTipoWallet):
-        #devo leggere i CSV, poi devo metterli nel db
-        pass
 
     def addWallet(self, w:wallet):
         self.wallets[w.walletName] = w
