@@ -1,9 +1,7 @@
-codice,descrizione,tipo
-1,contosanpaolo,contocorrentebancario
-2,azioneX,azionario
-3,Cartadicreditoricaricabile,Cartadicredito
-4,Carta di credito tradizionale, Cartadicredito
-5,Contocorrente Condiviso,contocorrentebancario
-6,Azioni, InvestimentoAzionario
-
-
+codice;descrizione;tipo;
+001;contosanpaolo;contocorrentebancario;
+002;azioneX;azionario;
+003;Cartadicreditoricaricabile;Cartadicredito;
+004;Carta di credito tradizionale; Cartadicredito;
+005;Contocorrente Condiviso;contocorrentebancario;
+006;Azioni; InvestimentoAzionario;
