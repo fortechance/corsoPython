@@ -1,18 +1,25 @@
-from Employee import Employee
-Employee1 =Employee("lahcen", 25,"fastcloud", True, 5, 1500)
-Employee2 =Employee("islam", 26, "facebook", False, 3.5, 500)
+from flask import Flask
+from flask import Flask, flash, redirect, render_template, request, session, abort
+import os
 
-print(Employee1.name)
-print(Employee2.name)
-print(Employee1.age)
-print(Employee2.age)
-print(Employee1.rating)
-print(Employee2.rating)
+app = Flask(__name__)
 
+@app.route('/')
+def home():
+ if not session.get('logged_in'):
+   return render_template('login.html')
+ else:
+  return "Hello Boss!"
 
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+ if request.form['password'] == 'password' and request.form['username'] == 'admin':
+  session['logged_in'] = True
+ else:
+  flash('wrong password!')
+ return home()
 
-print(Employee1.salary)
+if __name__ == "__main__":
+ app.secret_key = os.urandom(12)
+app.run(debug=True,host='0.0.0.0', port=4000)
 
-Employee1.bonus()
-print(Employee2.salary)
-Employee2.bonus()
