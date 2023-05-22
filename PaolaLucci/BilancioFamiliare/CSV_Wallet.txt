@@ -1,0 +1,8 @@
+CODICE WALET; DESCRIZIONE; TIPO 
+001; C/C Unicredit; Conto Corrente
+002; Risparmio; Conto Corrente
+003; Carta di Credito; Carte
+004; Titoli; Deposito Titoli
+005; Salvadanaio Vacanze; Satispay
+006; Buoni Pasto; Tessera virtuale
+007; Buono Celiachia, Tessera virtuale

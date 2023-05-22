@@ -1,9 +1,0 @@
-CODICE WALET, WALLET
-001, Conto Corrente Principale
-002, Conto Corrente Risparmio
-003, Carta di Credito
-004, Carta Prepagata
-005, Deposito Titoli
-006, Salvadanaio Vacanze
-007, Buoni Pasto
-008, Buono Celiachia
