@@ -1,14 +1,14 @@
 import datetime as dt
+import os
 
+#entità forte
 class utente():
-    def __init__(self, nome, cognome, dataN):
+    def __init__(self, codice, nome, cognome, dataN):
+        self.codice = codice
         self.nomeU = nome
         self.cognome = cognome
         #regolo la data nel formato che voglio tramite la libreria datetime
         self.dataN = dt.date.strptime(dataN, "%d/%m/%Y").date()
-        #self.indirizzo = f"{indirizzo}, {citta}, {CAP}"
-        #self.impiego = impiego
-        #self.animali = []
         
     def calcEta(self):
         today = dt.date.today().strftime("%d/%m/%Y")
@@ -16,6 +16,7 @@ class utente():
         eta = int(delta.days / 365.25)
         return eta
 
+#entità forte
 class tipoWallet():
     def __init__(self, descrizione, tipo):
         self.descrizione = descrizione
@@ -32,7 +33,7 @@ class wallet():
         self.walletName = nome
         self.saldo = 0
 
-
+#entità forte
 class causale():
     def __init__(self, descrizione, segno):
         self.descrizione = descrizione
@@ -48,7 +49,7 @@ class causali():
     def AddCausale(self, c:causale):
         #verifico se la causale esiste. Se esite ricevo un'eccezione
         if self.CausaleExist(c.descrizione):
-            raise Exception('Causale Duplicata')
+            raise Exception('Causale Esistente')
         else:
             #se la causale no esiste aggiorno il dizionario elencoCausali inserendo come chiave la descrizione della causale
             self.elencoCausali[c.descrizione] = c
@@ -60,7 +61,7 @@ class causali():
         else:
             newCausale = input(f'causale {c.descrizione} inesistente. Vuoi crearla?')
             
-            if (newCausale == "SI"):
+            if (newCausale == "si"):
                 causali.AddCausale(c)
         
 class movimento():
@@ -79,5 +80,14 @@ class movimento():
 
 class bottino():
     def __init__(self):
-
+        #sarà l'insieme dei wallet
         self.wallets = {}
+        
+    def initUtenti(self, uFilename):
+        self.filename = uFilename
+    
+    def initCausali(self, cFilename):
+        self.filename = cFilename
+        
+    def initTipoWallet(self, wFilename):
+        self.filename = wFilename

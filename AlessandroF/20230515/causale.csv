@@ -1,0 +1,19 @@
+codice;descrizione;segno
+001;stipendio;+
+002;pensione;+
+003;bolletta;-
+004;domiciliazione X;-
+005;pagamentocorso;-
+006;ricaricacartacreditoricaricabile;-
+007;riaddebitocartadicredito;+
+008;acquisto;-
+009;bonifico ingresso;+
+010;pagamento online;-
+011;spesa;-
+012;interessi conto;-
+013;dividendo azioni;+
+014;rimborso;+
+015;vendita oggetto;+
+016;spese conto;-
+017;ricaricacellulare; -
+018;alimentari;-
