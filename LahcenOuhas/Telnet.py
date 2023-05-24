@@ -28,3 +28,7 @@ tn.write(b"sh run interface g0/1\n")
 tn.write(b"sh spanning tree vla 10")
 tn.write(b"exit\n")
 print(tn.read_all().decode('ascii'))
+
+
+
+
