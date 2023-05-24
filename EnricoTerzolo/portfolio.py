@@ -8,16 +8,37 @@ def showPortfolio(p:portfolio):
     #indicarne uno, almeno di tipo fittizio
     #tipo il saldo 
     
-    layout = [
-        [ps.Text(f'Benvenuto {p.utente.nome}')],
-        [ps.Text('I tuoi Wallet:'), ps.Text('I Tuoi movimenti')],
-        [ps.Listbox(['w1','w2','w3']), ps.Listbox(['m1','m2','m3'])],
-        [ps.Button('Aggiungi Wallet'), ps.Button('Aggiungi Movimento')],
-        [ps.Text('Totale Spese'), ps.Text(''),ps.Text('Totale Entrate'), ps.Text('')],
-        [ps.Button('Esci')]
+    colonna1 = [
+        [ps.Text('I Tuoi Wallet')],
+        [ps.Listbox([], size = (None,5))],
+        [ps.Text('Totale Entrate'), ps.Text('0.00',justification = 'right')]
     ]
 
-    window = ps.Window('Portfolio',layout)
+    colonna2 = [
+        [ps.Text('I Tuoi Movimenti0')],
+        [ps.Listbox([], size = (None,5))],
+        [ps.Text('Totale Spese'), ps.Text('2310.00' ,justification = 'right')]
+    ]
+    
+    pulsanti = [
+        [ps.Button('Esci'), 
+         ps.Button('Aggiungi Wallet'), 
+         ps.Button('Aggiungi Movimento')]
+    ]
+   
+
+    layout = [
+        [ps.Text(f'Benvenuto {p.utente.nome}')],
+                
+        [ps.Column(colonna1),ps.Column(colonna2)],
+
+        [ps.HorizontalSeparator()],
+
+        [ps.Column(pulsanti)]
+        
+    ]
+
+    window = ps.Window('Portfolio',layout,size = (600,600))
 
     while True:
 
