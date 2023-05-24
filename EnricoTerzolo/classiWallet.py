@@ -13,10 +13,9 @@ class tipoWallet():
         self.tipo = reale
  
 class wallet():
-    def __init__(self, u:utente, tw:tipoWallet, nome):
+    def __init__(self, tw:tipoWallet, nome):
 
         self.movimenti = {}
-        self.utente = u
         self.tipowallet = tw
         self.walletName = nome
         self.saldo = 0
@@ -60,8 +59,9 @@ class movimento():
             raise Exception(f'causale {c.descrizione} inesistente')
 
 class portfolio():
-    def __init__(self):
+    def __init__(self, u:utente):
 
+        self.utente = u
         self.wallets = {}
 
     def addWallet(self, w:wallet):

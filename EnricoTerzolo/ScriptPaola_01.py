@@ -1,5 +1,6 @@
 from classiWallet import *
 from login_paola import *
+from portfolio import *
 
 import os
 
@@ -10,6 +11,8 @@ Logins = {}
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+print(BASE_DIR)
+pass
 def initLogins(fileName):
 
     file = BASE_DIR + '\\' + fileName
@@ -142,6 +145,7 @@ initLogins('0_login.csv')
 
 # forniamo una videata di login e verifichiamo che sia ok
 user, passw = doLogin()
+loginok = False
 
 # identifico se c'è l'utente segnato dal login
 if (user in Logins.keys()):
@@ -151,17 +155,31 @@ if (user in Logins.keys()):
         cod = Logins[user]['codiceutente']
         uOK = Utenti[cod]
         print(uOK)
-    
+        loginok = True
+
     else:
-        print('passsword errta')
+        print('passsword errata')
 else:
     print('user errato')
 
 #adesso creo la classe utente con i dati di login
+if loginok:
+    u = utente(cod,uOK['Nome'], uOK['Cognome'])
+    # creo il portfolio dell'utente
+    por = portfolio(u)
 
-u = utente(cod,uOK['nome'], uOK['cognome'])
-# creo il portfolio dell'utente
-por = portfolio(u)
+else:
+    print('Login Fallito')
+    raise Exception ('Login Fallito') 
+# login ok, portfolio creato
+
+showPortfolio(por)
+
+
+
+
+
+          
 
 
 
