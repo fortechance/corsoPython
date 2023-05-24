@@ -1,10 +1,49 @@
 from classiWallet import *
+from login_paola import *
+from portfolio import *
+
+import os
 
 Causali = {}
 Utenti = {}
 TipoWallet = {}
+Logins = {}
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+print(BASE_DIR)
+pass
+def initLogins(fileName):
+
+    file = BASE_DIR + '\\' + fileName
+    
+    with open(file,'r') as f:
+        dati = f.read()
+
+    righe = dati.split('\n')
+    nriga =0
+
+    for riga in righe:
+        if (nriga == 0):
+            nriga +=1
+            continue
+
+        colonne = riga.split(';')
+        #ora bbiamo le colonne suddivise riga per riga
+
+        username = colonne[0]
+        password = colonne[1]
+        codiceUtente = colonne[2]
+
+        #lo aggiungo al dizionario
+
+        l = {}
+        l['username'] = username
+        l['password'] = password
+        l['codiceutente'] = codiceUtente
+
+        Logins[username] = l
+
 
 def initTipoWallet(fileName):
 
@@ -100,29 +139,47 @@ def initUtenti(fileName):
 initTipoWallet('0_tipowallet.csv')
 initCausali('0_causali.csv')
 initUtenti('0_utenti.csv')
+initLogins('0_login.csv')
 
-eCau = causali()
+# adesso abbiamo letto tutti i csv con i dati di base
 
-try:
-    c = causale('stipendio','+')
-    eCau.AddCausale(c)
-    c = causale('Mutuo','-')
-    eCau.AddCausale(c)
-    #questo genera un errore:
-    c= causale('lotteria', '+')
-    eCau.AddCausale(c)
-    c= causale('Riscossione Affitto', '+')
-    eCau.AddCausale(c)
+# forniamo una videata di login e verifichiamo che sia ok
+user, passw = doLogin()
+loginok = False
 
-except:
-    print(f'causale {c.descrizione} duplicata')
+# identifico se c'è l'utente segnato dal login
+if (user in Logins.keys()):
+    if (Logins[user]['password'] == passw):
+        #login corretto
+        #recupero dati utente.
+        cod = Logins[user]['codiceutente']
+        uOK = Utenti[cod]
+        print(uOK)
+        loginok = True
 
-try:
+    else:
+        print('passsword errata')
+else:
+    print('user errato')
 
-    cc = causale('Stipendio','+')
-    m=movimento(cc,2000,eCau)
-    
-except:
-    print(f'causale {cc.descrizione} non esiste')
+#adesso creo la classe utente con i dati di login
+if loginok:
+    u = utente(cod,uOK['Nome'], uOK['Cognome'])
+    # creo il portfolio dell'utente
+    por = portfolio(u)
+
+else:
+    print('Login Fallito')
+    raise Exception ('Login Fallito') 
+# login ok, portfolio creato
+
+showPortfolio(por)
+
+
+
+
+
+          
+
 
 
