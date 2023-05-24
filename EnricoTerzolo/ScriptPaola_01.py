@@ -12,7 +12,7 @@ Logins = {}
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 print(BASE_DIR)
-pass
+
 def initLogins(fileName):
 
     file = BASE_DIR + '\\' + fileName
@@ -158,7 +158,7 @@ if (user in Logins.keys()):
         loginok = True
 
     else:
-        print('passsword errata')
+        print('password errata')
 else:
     print('user errato')
 
@@ -173,7 +173,17 @@ else:
     raise Exception ('Login Fallito') 
 # login ok, portfolio creato
 
-showPortfolio(por)
+wal = wallet('004', 'Conto Tascabile','PPay')
+por.addWallet(wal)
+wal = wallet('001', 'Conto Bancario', 'Unic')
+por.addWallet(wal)
+wal = wallet('002', 'Non mi ricordo', 'PayPal')
+por.addWallet(wal)
+wal = wallet('003', 'Nemmeno adesso', 'Sanp')
+por.addWallet(wal)
+
+
+showPortfolio(por, TipoWallet)
 
 
 

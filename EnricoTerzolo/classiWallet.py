@@ -13,11 +13,12 @@ class tipoWallet():
         self.tipo = reale
  
 class wallet():
-    def __init__(self, tw:tipoWallet, nome):
+    def __init__(self, tw:tipoWallet, nome, codice):
 
         self.movimenti = {}
         self.tipowallet = tw
         self.walletName = nome
+        self.codicewallet = codice
         self.saldo = 0
 
 class causale():
