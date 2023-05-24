@@ -13,6 +13,9 @@ router = {
 net_connect = ConnectHandler(**router)
 net_connect.enable()
 
+# Send commands and receive output
+output = net_connect.send_command('show version')
+output = net_connect.send_command('show ip bgp all | in ip pubblico')
 # Enter configuration mode
 net_connect.config_mode()
 
