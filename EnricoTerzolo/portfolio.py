@@ -40,6 +40,7 @@ def showPortfolio(p:portfolio):
 
     window = ps.Window('Portfolio',layout,size = (600,600))
 
+
     while True:
 
         event, values = window.read()
