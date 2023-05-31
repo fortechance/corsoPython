@@ -31,6 +31,3 @@ print(output)
 # Save configuration
 net_connect.exit_config_mode()
 net_connect.write_memory()
-
-# Disconnect from the router
-net_connect.disconnect()
