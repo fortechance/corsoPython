@@ -1,0 +1,5 @@
+89.40.173.164 - [192.168.10.16]
+python.hostingstudenti.fortechance.com 
+schema:c73db
+user:c73db
+password:ocGB@QkcA8
