@@ -1,25 +1,23 @@
+import os
+
 class utente():
     def __init__(self, codice, nome, cognome):
-
-        self.codice = codice
-        self.cognome = cognome
-        self.nome = nome
+        pass
 
 class tipoWallet():
-    def __init__(self, codice, descrizione, reale):
-        
-        self.codice = codice
-        self.descrizione = descrizione
-        self.tipo = reale
- 
+    def __init__(self, descrizione, reale):
+        pass
+
 class wallet():
-    def __init__(self, tw:tipoWallet, nome, codice):
+    def __init__(self, u:utente, tw:tipoWallet, nome):
 
         self.movimenti = {}
+        self.utente = u
         self.tipowallet = tw
         self.walletName = nome
-        self.codicewallet = codice
         self.saldo = 0
+
+        pass
 
 class causale():
     def __init__(self, codice, descrizione, segno):
@@ -56,13 +54,14 @@ class movimento():
             self.causale = c
             self.importo = importo
     
+            if (c.segno == '-'):
+                self.importo = self.importo * -1
         else:
             raise Exception(f'causale {c.descrizione} inesistente')
 
-class portfolio():
-    def __init__(self, u:utente):
+class bottino():
+    def __init__(self):
 
-        self.utente = u
         self.wallets = {}
 
     def addWallet(self, w:wallet):

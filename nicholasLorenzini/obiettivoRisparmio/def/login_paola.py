@@ -4,7 +4,7 @@ import PySimpleGUI as ps
 
 def doLogin():
 
-    ps.theme('green')
+    ps.theme('DarkAmber')
 
     layout = [
         [ps.Text('Inserire dati di Login')],
