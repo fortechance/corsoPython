@@ -1,14 +1,11 @@
-import sqlite3
+from sqlalchemy import create_engine
 
 
+engine= create_engine('mysql://c73db:ocGB@QkcA8@hostingstudenti.fortechance.com/schema')
 
-conn = sqlite3.connect('database.db')
+from urllib.parse import quote
+pw='ocGB@QkcA8'
 
-cursor = conn.cursor()
-cursor.execute('''CREATE TABLE users
-                  (id INT PRIMARY KEY NOT NULL,
-                  name TEXT NOT NULL);''')
+pwe=quote(pw,safe="")
 
-cursor.execute("INSERT INTO users (id, name) VALUES (1, 'John')")
-
-conn.commit()
+engine=create_engine(f'mysql://vc73db:{pwe}@hostingstudenti.fortechance.com/schema)')
