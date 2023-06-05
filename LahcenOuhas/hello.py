@@ -1,9 +1,15 @@
-from flask import Flask
-app = Flask(__name__)
+from sqlalchemy import create_engine
 
-@app.route("/")
-def index():
- return "Hello World!"
+# Create an engine and connect to a SQLite database
+engine = create_engine('sqlite:///mydatabase.db')
 
-if __name__ == "__main__":
- app.run(host='0.0.0.0', port=4000)
+# Create a connection
+connection = engine.connect()
+
+# Perform database operations
+result = connection.execute("SELECT * FROM mytable")
+for row in result:
+    print(row)
+
+# Close the connection
+connection.close()
