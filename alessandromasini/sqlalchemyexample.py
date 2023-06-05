@@ -1,11 +1,6 @@
 
 
-
-#from sqlalchemy import create_engine   
-
-
 from sqlalchemy import create_engine
-
 
 from urllib.parse import quote
 
@@ -14,12 +9,6 @@ pwe = quote(pw, safe ="")
 engine = create_engine(f"mysql://c73db:{pwe}@python.hostingstudenti.fortechance.com/c73db")
 
 
-
-
-'''
-engine = create_engine('mysql://c73db:ocGB@QkcA8@python.hostingstudenti.fortechance.com/c73db')
-
-'''
 
 
 
