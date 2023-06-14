@@ -13,12 +13,12 @@ class tipoWallet():
         self.tipo = reale
  
 class wallet():
-    def __init__(self, codice, nome, tw:tipoWallet):
+    def __init__(self, tw:tipoWallet, nome, codice):
 
         self.movimenti = {}
-        self.codice = codice
         self.tipowallet = tw
         self.walletName = nome
+        self.codicewallet = codice
         self.saldo = 0
 
 class causale():
@@ -66,13 +66,4 @@ class portfolio():
         self.wallets = {}
 
     def addWallet(self, w:wallet):
-        if self.walletExist(w):
-            raise Exception('Wallet Duplicato')
-        else:
-            self.wallets[w.codice] = w
-        
-    def walletExist(self, w:wallet):
-        if w.codice in self.wallets.keys():
-            return True
-        else:
-            return False
+        self.wallets[w.walletName] = w
