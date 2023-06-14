@@ -3,11 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import  MetaData
-
-
 # Create a base class
 Base = declarative_base()
-
 # Define a class representing a table
 class causale(Base):
   __tablename__ = 'causale'
@@ -22,16 +19,12 @@ class causale(Base):
   dialect= "mysql"
   conn= f'{dialect}://{user}:{passw}@{host}/{schema}'
   engine= create_engine(conn)
-
-
 # Create the tables in the database
   MetaData.create_all(engine)
 # Create a metadata object
   MetaData().create_all(bind=engine)
-
 # Create a session factory
   Session=sessionmaker(bind=engine)
-
 # Create a session
   session= Session()
 
