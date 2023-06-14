@@ -16,6 +16,9 @@ with engine.connect() as cn:
         res = cn.execute(i)
         cn.commit()
         print('causale inserita')
+
+        #cn.execute(text('insert into causali (codice, descrizione, segno) values ("newca","nuova causale", "+")'))
+
     except:
         cn.rollback()
         print('causale rifiutata')

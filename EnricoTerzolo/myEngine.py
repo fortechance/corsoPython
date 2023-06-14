@@ -9,8 +9,8 @@ schema = 'c73db'
 pwe = quote(password,safe='')
 conn = f'{dialect}://{user}:{pwe}@{host}/{schema}'
 
-print ("Creazione dell'engine di database")
-
+print("Creazione dell'engine di database:")
+print(conn)
 
 #engine = create_engine(conn, echo=True)
 engine = create_engine(conn)
