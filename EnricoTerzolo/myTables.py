@@ -92,7 +92,7 @@ wallet = Table(
     Column('DESCRIZIONE', String(25), nullable=False),
     Column('TIPOWALLET', String(3), ForeignKey('TipoWallets.CODICE')),
     Column('FV' , CHAR,  nullable = False),
-    Column('IDPORTFOLIO', Integer, ForeignKey('Portfolio.ID'))
+    Column('IDPORTFOLIO', Integer, ForeignKey('Portfolios.ID'))
 )
 
 movimento = Table(
