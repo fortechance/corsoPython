@@ -1,7 +1,6 @@
 
 from urllib.parse import quote
 from sqlalchemy import create_engine, Column, Integer, MetaData
-
 from sqlalchemy.ext.declarative import declarative_base
 
 
