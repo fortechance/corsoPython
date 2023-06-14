@@ -2,26 +2,53 @@ from myEngine import engine
 from sqlalchemy import text, insert, select
 from myTables import user, causale, movimento
 import datetime
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#print(BASE_DIR)
+
+#estraggo gli user dal csv per inserirli nel db
+userCSV = BASE_DIR + '\\csv\\utenti.csv'
+
 
 with engine.connect() as cn:
+    with open(userCSV, 'r') as fr:
+        buffer = fr.read()
+        righe = buffer.split('\n')
+        nriga = 0
+        
+        for riga in righe:
+            if (nriga == 0):
+                nriga +=1
+                continue
+
+            colonne = riga.split(';')
+            #ora bbiamo le colonne suddivise riga per riga
+
+            codU = colonne[0]
+            nomeU = colonne[1]
+            cognomeU = colonne[2]
+            emailU = colonne[3]
+            passU = colonne[4]
     
-    try:
-
-        i =  insert(causale).values(
-        codice = '123cis',
-        descrizione = 'Incasso',
-        segno = '+'
-        )
-
-        res = cn.execute(i)
-        cn.commit()
-        print('causale inserita')
-
-        #cn.execute(text('insert into causali (codice, descrizione, segno) values ("newca","nuova causale", "+")'))
-
-    except:
-        cn.rollback()
-        print('causale rifiutata')
+            i =  insert(user).values(
+            COD_UTENTE = codU,
+            NOME = nomeU,
+            COGNOME = cognomeU,
+            EMAIL = emailU,
+            PASSWORD = passU
+            )
+            
+            try:
+                cn.execute(i)
+                cn.commit()
+                print('Utente inserito')
+            except Exception as e:
+                cn.rollback()
+                print(e.__str__)
+                
+                
+    '''
     
     s=select(causale)
     res = cn.execute(s).all()
@@ -43,3 +70,5 @@ with engine.connect() as cn:
 
     for r in ret:    
         print(r)
+    
+    '''
