@@ -1,6 +1,10 @@
 from sqlalchemy import create_engine
 from urllib.parse import quote
-from sqlalchemy import Table, Column, Integer, String, MetaData
+from sqlalchemy import Table, Column, Integer, String, MetaData, select
+from sqlalchemy.ext.declarative import declarative_base
+
+
+# //////////////////////////////////////////////////
 
 # 89.40.173.164 - [192.168.10.16]
 # python.hostingstudenti.fortechance.com
@@ -8,19 +12,20 @@ from sqlalchemy import Table, Column, Integer, String, MetaData
 # user:c73db
 # password:ocGB@QkcA8
 
-# -------------------------------------------------------
+# //////////////////////////////////////////////////
 
 pw = "ocGB@QkcA8"
 pwe = quote(pw, safe="")
-# 89.40.173.164 - [192.168.10.16]
+# host = "89.40.173.164"
+# host = "192.168.10.16"
 host = "python.hostingstudenti.fortechance.com"
 sch = "c73db"
 us = "c73db"
 dia = "mysql"
 
-#--------------------------------------------------------
+# --------------------------------------------------------
 conn = f"{dia}://{us}:{pwe}@{host}/{sch}"
-# -------------------------------------------------------
+# --------------------------------------------------------
 
 try:
     # GET THE CONNECTION OBJECT (ENGINE) FOR THE DATABASE
@@ -29,14 +34,25 @@ try:
         f"Connection to the {host} for user {us} created successfully.")
 
     m = MetaData()
-    
-# -----------------------------------------------------------
 
-    m.reflect(engine)
-    for table in m.tables.values():
-        print(table.name)
-        for column in table.c:
-            print(column.name)
+# ---------------------------------------------------------
+
+    #  m.reflect(engine)
+    #  for table in m.tables.values():
+    #      print(table.name)
+    #      for row in table.c :
+    #          print(f"{column.name}-{column.type}")
+    #         print("--------------------------")
+    #         for column in table.c:
+    #             print(f"{column.name}-{column.type}")
+    #        print("--------------------------")
+    #
+
+
+# -----------------------------------------------
+
+
+# ---------------------------------------------------------
 
     # students = Table(
     # 'students', m,
@@ -45,8 +61,12 @@ try:
     # Column('lastname', String(25)),
     # )
     # m.create_all(engine)
+# ---------------------------------------------------------
 
-    # students.drop(engine)
+    t = Table("causali", m)
+    stmt = select(t)
+    print(stmt)
+    t.drop(engine)
 
 
 except Exception as ex:
