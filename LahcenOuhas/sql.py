@@ -42,3 +42,4 @@ class causale(Base):
 #pwe=quote(pw,safe="")
 
 #engine=create_engine(f'mysql://vc73db:{pwe}@python.hostingstudenti.fortechance.com/schema)'
+
