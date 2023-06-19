@@ -6,7 +6,6 @@ password = 'ocGB@QkcA8'
 dialect = 'mysql'
 host = 'python.hostingstudenti.fortechance.com'
 schema = 'c73db'
-#forzo la password come stringa perchè c'è una @ che crea disordine con la connessione
 pwe = quote(password,safe='')
 conn = f'{dialect}://{user}:{pwe}@{host}/{schema}'
 

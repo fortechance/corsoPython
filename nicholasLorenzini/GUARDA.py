@@ -4,7 +4,7 @@ cognome = "Bullo"
 #slicing -> posso prendere un elemento stringa e sezionarlo come se fosse ogni lettera un valore di una lista
 iniziali = nome[0] + cognome[0]
 
-# print (iniziali)
+# print (iniziali -> PB)
 
 a = []
 #aggiungo alla lista a il primo valore (a[0] = "Mannaggia")
