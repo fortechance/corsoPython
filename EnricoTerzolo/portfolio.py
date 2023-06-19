@@ -1,5 +1,6 @@
 from classiWallet import *
 import PySimpleGUI as ps
+import urllib
 
 def addWallet(wtype):
 
@@ -82,7 +83,6 @@ def showPortfolio(p:portfolio, wtype):
 
     window = ps.Window('Portfolio',layout,size = (600,600))
 
-
     while True:
 
         event, values = window.read()
@@ -95,6 +95,6 @@ def showPortfolio(p:portfolio, wtype):
             p.addWallet(wnew)
 
             #aggiorno la videata
-
+            window.update()
 
     window.Close()
