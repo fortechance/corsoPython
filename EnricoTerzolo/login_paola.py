@@ -29,7 +29,8 @@ def doLogin():
             passw = (values['-pass-'])
             break
 
-    windows.Close()
+    #windows.Close
+    windows.close()
     
     return user, passw    
 
