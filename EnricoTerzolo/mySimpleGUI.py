@@ -7,8 +7,9 @@ from myDashboard import doDashboard
 from sqlalchemy import Select
 
 # devo fare un login, poi il resto è di sonseguenza
+a=False
 
-while True:
+while a:
 
     username, password = doLogin()
 
@@ -32,6 +33,11 @@ while True:
 
 
     # dobbiamo portarci appresso chi ha fatto il login.
+
+if a== False:
+    username = 'p'
+    password = 'a'
+    codutente = '007'
 
 print(username + ' '+password )    
 
