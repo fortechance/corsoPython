@@ -1,6 +1,8 @@
-codice;nome;cognome
-001;marco;rossi
-002;carlo;bianchi
-003;sarah;connor
-004;alessandro;masini
-005;tony;chan
+codice;nome;cognome;email; password
+001;marco;rossi;rossi@google.it;r0ss1 
+002;carlo;bianchi;bianchi@google.it;b1anch1
+003;sarah;connor;connor@gmail.com;c0nn0r
+004;alessandro;masini;masini@gmail.com;m4s1n1
+005;Enrico;Terzolo;en@gmail.com;1234
+006;paolino;p;a@a.a;a
+007;p;p;a@a.a;a

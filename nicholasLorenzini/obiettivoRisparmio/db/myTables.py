@@ -1,6 +1,6 @@
 from myEngine import engine
 from sqlalchemy import Table 
-from sqlalchemy import Column,MetaData , ForeignKey
+from sqlalchemy import Column, MetaData, ForeignKey
 from sqlalchemy import Integer, String, CHAR, Numeric,DateTime
 
 metaobj = MetaData()
@@ -92,7 +92,7 @@ wallet = Table(
     Column('DESCRIZIONE', String(25), nullable=False),
     Column('TIPOWALLET', String(3), ForeignKey('TipoWallets.CODICE')),
     Column('FV' , CHAR,  nullable = False),
-    Column('IDPORTFOLIO', Integer, ForeignKey('Portfolios.ID'))
+    Column('IDPORTFOLIO', Integer, ForeignKey('Portfolio.ID'))
 )
 
 movimento = Table(
