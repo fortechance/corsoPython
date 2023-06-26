@@ -4,6 +4,33 @@ from myEngine import engine
 from sqlalchemy import Select
 from myNewPortfolio import doNewPortfolio
 
+def RefreshMouvements(idWallet):
+
+    with engine.connect() as cn:
+
+        s = Select(movimento).where(movimento.c.IDWALLET == idWallet)
+        listamovimenti = cn.execute(s).all()
+        
+        movlist = []
+        for m in listamovimenti:
+            movlist.append(f'{m[0]} - [{m[3]}] - € {m[1]} - {m[4]}')
+
+
+    return movlist
+
+def RefreshWallet(idportfolio):
+
+    with engine.connect() as cn:
+
+        s = Select(wallet).where(wallet.c.IDPORTFOLIO == idportfolio)
+        walletlist = cn.execute(s).all()
+
+        wallets = []
+        for w in walletlist:
+            wallets.append(f'{w[0]} - {w[1]}')
+
+    return wallets
+
 
 def RefreshPorfolio(cut):
 
@@ -11,37 +38,34 @@ def RefreshPorfolio(cut):
 
         s = Select(portfolio).where(portfolio.c.OWNER == cut)
         portlist = cn.execute(s).all()
-
-        chiavi = []
+        
         valori = []
 
         for p in portlist:
 
-            chiavi.append(p[0])
             valori.append(f'{p[0]} - {p[1]}')
-
-            
-    return chiavi, valori
+           
+        return  valori
 
 def doDashboard( user, passw,cutente):
 
     
     ps.theme('green')
 
-    chiavi, valori = RefreshPorfolio(cutente)
+    valori = RefreshPorfolio(cutente)
 
     col1= [
         [ps.Text(f'I Tuoi Portfolio:')],
-        [ps.Listbox((valori), size=(40,15), key='-refreshP-', enable_events=True)]
+        [ps.Listbox((valori), size=(40,15), key='-refreshP-', enable_events=True, select_mode= 'listbox')]
     ]
     
     col2= [
         [ps.Text(f'I Tuoi Wallet:')],
-        [ps.Listbox([], size=(40,15))]
+        [ps.Listbox([], size=(40,15),key='-refreshW-', enable_events=True, select_mode = 'listbox')]
     ]
     col3= [
         [ps.Text(f'I Tuoi Movimenti:')],
-        [ps.Listbox([], size=(40,15))]
+        [ps.Listbox([], size=(80,15),key = '-refreshM-', enable_events = True, select_mode = 'listbox')]
     ]
     layout = [
         [ps.Text(f'Benvenuto {user}')],
@@ -64,17 +88,30 @@ def doDashboard( user, passw,cutente):
         if event == ps.WIN_CLOSED or event == 'Exit':
             break
         elif event == '-refreshP-':
-            selezione = values['-refreshP-'][0]
-            chiave = values['-refreshP-'][0][1]
-            ps.popup(selezione, chiave)
+            selected_key = values['-refreshP-'][0][:3] 
+            #ps.popup(f'Slezionata chiave, {selected_key}')
+
+            porfolio_key = selected_key
+            wallets = RefreshWallet(porfolio_key)
+
+            windows['-refreshW-'].Update(wallets)
+
+        elif event == '-refreshW-':
+
+            selected_key = values['-refreshW-'][0][:2]
+            wallet_key = selected_key
+
+            mouvements = RefreshMouvements(wallet_key)
+            windows['-refreshM-'].Update(mouvements)
+
 
         elif event == 'Nuovo Portfolio':
             doNewPortfolio(cutente)
 
             chiavi = []
             valori = []
-            chiavi, valori = RefreshPorfolio(cutente)
-            windows['-refreshP-'].Update(values = (valori))
+            chiavi, valori , combined = RefreshPorfolio(cutente)
+            windows['-refreshP-'].Update(values = (combined))
             #break
         elif event == 'Nuovo Wallet':
             break
