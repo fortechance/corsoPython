@@ -2,18 +2,18 @@ import PySimpleGUI as ps
 from myTables import *
 from myEngine import engine
 from sqlalchemy import Select
-from myNewPortfolio import doNewPortfolio
+from myNewPortfolio import doNewPortfolio, doNewWallet
 
 def RefreshMouvements(idWallet):
 
     with engine.connect() as cn:
 
-        s = Select(movimento).where(movimento.c.IDWALLET == idWallet)
+        s = Select(movimento, causale).where(movimento.c.CAUSALE == causale.c.CODICE and movimento.c.IDWALLET == idWallet)
         listamovimenti = cn.execute(s).all()
         
         movlist = []
         for m in listamovimenti:
-            movlist.append(f'{m[0]} - [{m[3]}] - € {m[1]} - {m[4]}')
+            movlist.append(f'{m[0]} - [{m[3]}] - € {m[8]}{m[1]} - <{m[7]}>:{m[4]}')
 
 
     return movlist
@@ -81,6 +81,9 @@ def doDashboard( user, passw,cutente):
     windows = ps.Window('Dashboard',layout, finalize = True)
     windows.Maximize()
 
+    selected_key = ''
+    wallet_key = ''
+
     while True:
 
         event, values = windows.read()
@@ -95,6 +98,7 @@ def doDashboard( user, passw,cutente):
             wallets = RefreshWallet(porfolio_key)
 
             windows['-refreshW-'].Update(wallets)
+            windows['-refreshM-'].Update([])
 
         elif event == '-refreshW-':
 
@@ -108,12 +112,24 @@ def doDashboard( user, passw,cutente):
         elif event == 'Nuovo Portfolio':
             doNewPortfolio(cutente)
 
-            chiavi = []
-            valori = []
-            chiavi, valori , combined = RefreshPorfolio(cutente)
-            windows['-refreshP-'].Update(values = (combined))
+            valori = RefreshPorfolio(cutente)
+            windows['-refreshP-'].Update(valori)
+            windows['-refreshW-'].Update([])
+            windows['-refreshM-'].Update([])
             #break
         elif event == 'Nuovo Wallet':
+
+            nPortfolio = selected_key #values['-refreshP-'][0][:3] 
+            if nPortfolio == '':
+                continue
+            else:
+                doNewWallet(nPortfolio)
+
+
+
+
+
+ 
             break
         elif event == 'Nuovo Movimento':
             break

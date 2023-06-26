@@ -7,7 +7,7 @@ from myDashboard import doDashboard
 from sqlalchemy import Select
 
 # devo fare un login, poi il resto è di sonseguenza
-a=False
+a=True
 
 while a:
 
