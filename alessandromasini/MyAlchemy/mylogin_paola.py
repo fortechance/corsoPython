@@ -33,4 +33,6 @@ def doLogin():
     
     return user, passw    
 
+doLogin()
+
     
