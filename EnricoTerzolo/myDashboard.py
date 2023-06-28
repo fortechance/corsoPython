@@ -2,52 +2,12 @@ import PySimpleGUI as ps
 from myTables import *
 from myEngine import engine
 from sqlalchemy import Select
-from myNewPortfolio import doNewPortfolio, doNewWallet
+from myNewPortfolio import doNewPortfolio, doNewWallet, doNewMouvement
+from mySintesi import Sintesi
+from myRefresh import *
 import datetime
 
 
-def RefreshMouvements(idWallet):
-
-    with engine.connect() as cn:
-
-        s = Select(movimento, causale).where(movimento.c.CAUSALE == causale.c.CODICE and movimento.c.IDWALLET == idWallet)
-        listamovimenti = cn.execute(s).all()
-        
-        movlist = []
-        for m in listamovimenti:
-            movlist.append(f'{m[0]} - [{m[3].date()}] - € {m[8]}{m[1]} - <{m[7]}>:{m[4]}')
-
-
-    return movlist
-
-def RefreshWallet(idportfolio):
-
-    with engine.connect() as cn:
-
-        s = Select(wallet).where(wallet.c.IDPORTFOLIO == idportfolio)
-        walletlist = cn.execute(s).all()
-
-        wallets = []
-        for w in walletlist:
-            wallets.append(f'{w[0]} - {w[1]}')
-
-    return wallets
-
-
-def RefreshPorfolio(cut):
-
-    with engine.connect() as cn:
-
-        s = Select(portfolio).where(portfolio.c.OWNER == cut)
-        portlist = cn.execute(s).all()
-        
-        valori = []
-
-        for p in portlist:
-
-            valori.append(f'{p[0]} - {p[1]}')
-           
-        return  valori
 
 def doDashboard( user, passw,cutente):
 
@@ -93,14 +53,15 @@ def doDashboard( user, passw,cutente):
         if event == ps.WIN_CLOSED or event == 'Exit':
             break
         elif event == '-refreshP-':
-            selected_key = values['-refreshP-'][0][:3] 
-            #ps.popup(f'Slezionata chiave, {selected_key}')
+            if len(values['-refreshP-'])>0:
+                selected_key = values['-refreshP-'][0][:3] 
+                #ps.popup(f'Slezionata chiave, {selected_key}')
 
-            porfolio_key = selected_key
-            wallets = RefreshWallet(porfolio_key)
+                porfolio_key = selected_key
+                wallets = RefreshWallet(porfolio_key)
 
-            windows['-refreshW-'].Update(wallets)
-            windows['-refreshM-'].Update([])
+                windows['-refreshW-'].Update(wallets)
+                windows['-refreshM-'].Update([])
 
         elif event == '-refreshW-':
 
@@ -129,7 +90,21 @@ def doDashboard( user, passw,cutente):
                 wallets = RefreshWallet(nPortfolio) 
                 windows['-refreshW-'].Update(wallets)
         elif event == 'Nuovo Movimento':
-            break
+            doNewMouvement(wallet_key)
+            
+            mouvements = RefreshMouvements(wallet_key)
+            windows['-refreshM-'].Update(mouvements)
+            
+        elif event == 'Sintesi':
+
+            Sintesi(wallet_key)
+
+
+
+
+            #break
+
+
 
     windows.close()
     pass

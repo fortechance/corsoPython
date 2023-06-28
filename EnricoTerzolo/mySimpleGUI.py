@@ -1,4 +1,4 @@
-import PySimpleGUI
+# import PySimpleGUI
 from myTables import *
 from myEngine import engine
 from login_paola import doLogin
@@ -39,7 +39,7 @@ if a== False:
     password = 'a'
     codutente = '007'
 
-print(username + ' '+password )    
+#print(username + ' '+password )    
 
 doDashboard(username, password, codutente)
 
