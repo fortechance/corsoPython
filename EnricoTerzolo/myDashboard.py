@@ -3,6 +3,8 @@ from myTables import *
 from myEngine import engine
 from sqlalchemy import Select
 from myNewPortfolio import doNewPortfolio, doNewWallet
+import datetime
+
 
 def RefreshMouvements(idWallet):
 
@@ -13,7 +15,7 @@ def RefreshMouvements(idWallet):
         
         movlist = []
         for m in listamovimenti:
-            movlist.append(f'{m[0]} - [{m[3]}] - € {m[8]}{m[1]} - <{m[7]}>:{m[4]}')
+            movlist.append(f'{m[0]} - [{m[3].date()}] - € {m[8]}{m[1]} - <{m[7]}>:{m[4]}')
 
 
     return movlist
@@ -124,13 +126,8 @@ def doDashboard( user, passw,cutente):
                 continue
             else:
                 doNewWallet(nPortfolio)
-
-
-
-
-
- 
-            break
+                wallets = RefreshWallet(nPortfolio) 
+                windows['-refreshW-'].Update(wallets)
         elif event == 'Nuovo Movimento':
             break
 
