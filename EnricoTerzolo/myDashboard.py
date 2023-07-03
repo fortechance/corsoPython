@@ -36,8 +36,9 @@ def doDashboard( user, passw,cutente):
         [ps.Button('Nuovo Portfolio'),
          ps.Button('Nuovo Wallet'),
          ps.Button('Nuovo Movimento'),
-         ps.Button('Sintesi', pad=(100,0))       
-         ]               
+         ps.Button('Sintesi', pad=(100,0))],
+         [ps.Listbox([], size = (140,15), key = '-sintesi-', enable_events = True)]       
+                      
     ]
 
     windows = ps.Window('Dashboard',layout, finalize = True)
@@ -65,12 +66,14 @@ def doDashboard( user, passw,cutente):
 
         elif event == '-refreshW-':
 
-            selected_key = values['-refreshW-'][0][:2]
-            wallet_key = selected_key
+            try:
+                selected_key = values['-refreshW-'][0][:2]
+                wallet_key = selected_key
 
-            mouvements = RefreshMouvements(wallet_key)
-            windows['-refreshM-'].Update(mouvements)
-
+                mouvements = RefreshMouvements(wallet_key)
+                windows['-refreshM-'].Update(mouvements)
+            except:
+                continue
 
         elif event == 'Nuovo Portfolio':
             doNewPortfolio(cutente)
@@ -97,8 +100,8 @@ def doDashboard( user, passw,cutente):
             
         elif event == 'Sintesi':
 
-            Sintesi(wallet_key)
-
+            listasintesi = Sintesi(wallet_key)
+            windows['-sintesi-'].Update(listasintesi)
 
 
 
