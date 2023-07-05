@@ -1,16 +1,15 @@
-from flask import Flask
-from flask.views import View
+from flask import Flask, views
 
 app = Flask(__name__)
 
 
-class HelloWorld(View):
+class HelloWorld(views):
 
     def dispatch_request(self):
         return 'Hello World!'
 
 
-class HelloUser(View):
+class HelloUser(views.View):
 
     def dispatch_request(self, name):
         return 'Hello {}'.format(name)
