@@ -13,7 +13,7 @@ def homepage():
 
     return render_template('prova_01.html')
 
-@myapp.route('/notizie', methods = ['GET'])
+@myapp.route('/notizie', methods = ['POST'])
 def homepageProva():
 
     return render_template('ansa.html')
