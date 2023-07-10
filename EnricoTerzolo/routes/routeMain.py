@@ -4,7 +4,7 @@ from myTables import *
 from myRefresh import * 
 from sqlalchemy import Select
 from uuid import uuid4
-from json import dumps
+import json 
 from loginAttivi import LoginAttivi
 
 main_bp = Blueprint('main',__name__)
@@ -18,9 +18,12 @@ def login():
     
     rlogin = request
     dati = rlogin.json
+    print(dati)
 
-    nome = dati['USER']
-    pasw = dati['PASSWORD']
+    dt = json.loads(dati)
+
+    nome = dt['USER']
+    pasw = dt['PASSWORD']
 
     slogin = Select(user).where (user.c.NOME == nome).where(user.c.PASSWORD == pasw)
     
@@ -60,9 +63,9 @@ def login():
     print (LoginAttivi)
 
     if unicod == '':
-        return dumps(loginOK), 404
+        return json.dumps(loginOK), 404
     else:
-        return dumps(loginOK), 200
+        return json.dumps(loginOK), 200
         
 @main_bp.route('/dashboard', methods = ['POST'])
 def showDashboard():

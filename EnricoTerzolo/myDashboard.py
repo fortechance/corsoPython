@@ -16,11 +16,22 @@ def doDashboard( user, passw,cutente):
 
     ps.theme('green')
 
-    valori = RefreshPorfolio(cutente)
+    valoriq = RefreshPorfolio(cutente, True)
+
+    listap = []
+    for q in valoriq:
+
+        chiave = q
+        descr = valoriq[q]['DESCRIZIONE']
+        owner = valoriq[q]['OWNER']
+
+        elemento = f'{chiave} - {descr}'
+
+        listap.append(elemento)
 
     col1= [
         [ps.Text(f'I Tuoi Portfolio:')],
-        [ps.Listbox((valori), size=(40,15), key='-refreshP-', enable_events=True, select_mode= 'listbox')]
+        [ps.Listbox((listap), size=(40,15), key='-refreshP-', enable_events=True, select_mode= 'listbox')]
     ]
     
     col2= [
