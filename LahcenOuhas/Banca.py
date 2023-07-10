@@ -61,7 +61,6 @@ for riga in righe:
             dictCampi[user.cognome] =  {'CodUtente': user.CodUtente , 'Nome': user.nome,'cognome' : user.cognome,'eta' : user.età}
 
 print(dictCampi)
-exit()
 
 
 dictCausale = {}

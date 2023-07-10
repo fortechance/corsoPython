@@ -12,5 +12,4 @@ conn = f'{dialect}://{user}:{pwe}@{host}/{schema}'
 print("Creazione dell'engine di database:")
 print(conn)
 
-#engine = create_engine(conn, echo=True)
-engine = create_engine(conn)
+engine = create_engine(conn, echo = True)
