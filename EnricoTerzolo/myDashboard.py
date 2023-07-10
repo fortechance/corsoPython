@@ -6,12 +6,14 @@ from myNewPortfolio import doNewPortfolio, doNewWallet, doNewMouvement
 from mySintesi import Sintesi
 from myRefresh import *
 import datetime
-
-
+import requests
 
 def doDashboard( user, passw,cutente):
 
-    
+
+    #formuliamo la richiesta:
+
+
     ps.theme('green')
 
     valori = RefreshPorfolio(cutente)

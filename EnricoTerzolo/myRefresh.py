@@ -43,7 +43,7 @@ def RefreshWallet(idportfolio):
     return wallets
 
 
-def RefreshPorfolio(cut):
+def RefreshPorfolio(cut, query: bool = False):
 
     with engine.connect() as cn:
 
@@ -51,9 +51,20 @@ def RefreshPorfolio(cut):
         portlist = cn.execute(s).all()
         
         valori = []
+        valoriq  = {}
 
+        rownumber = 0
         for p in portlist:
 
             valori.append(f'{p[0]} - {p[1]}')
-           
+            
+            valoriq[p[0]] = {}
+            valoriq[p[0]]['DESCRIZIONE'] = p[1]
+            valoriq[p[0]]['OWNER'] = p[2]
+
+            rownumber +=1
+
+    if query:
+        return valoriq
+    else:
         return  valori

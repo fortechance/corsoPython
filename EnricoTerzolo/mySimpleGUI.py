@@ -3,6 +3,8 @@ from myTables import *
 from myEngine import engine
 from login_paola import doLogin
 from myDashboard import doDashboard
+from json import dumps
+import requests
 
 from sqlalchemy import Select
 
@@ -12,6 +14,19 @@ a=True
 while a:
 
     username, password = doLogin()
+
+    reqdata = {}
+    reqdata['USER'] = username
+    reqdata['PASSWORD'] = password
+
+    ret = requests.post('http://127.0.0.1/main/login',data = dumps(reqdata))
+
+    risposta = ret.json
+
+
+
+    #dobbiamo chiamare la API che f il login
+
 
     slogin = Select(user).where(user.c.NOME == username and user.c.PASSWORD == password)
     with engine.connect() as cn:

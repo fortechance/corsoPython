@@ -1,6 +1,7 @@
-from flask import Blueprint,  request
+from flask import Blueprint,  request, jsonify
 from myEngine import engine
 from myTables import *
+from myRefresh import * 
 from sqlalchemy import Select
 from uuid import uuid4
 from json import dumps
@@ -77,7 +78,6 @@ def showDashboard():
     db = {}
     db['portfolios'] = {}
 
-
     if uuid in LoginAttivi.keys():
         print ('Dashboard allowed')
         unicod = str(uuid4())
@@ -85,13 +85,20 @@ def showDashboard():
         LoginAttivi[unicod] = vecchio
         foo = LoginAttivi.pop(uuid)
 
-        return 'Dasboard OK ' + unicod + utente, 200
-    else:
-        print('Dashboard Forbidden')
-        return 'Dashboard KO' + utente, 403
- 
+        # la return di un dizionario (quindi oggetto json) con ad esempio la lista dei portfolio di quell'utente
 
-    
-    
-    
-    pass
+        newPortfolios = RefreshPorfolio(utente, True)
+        ret = {}
+        ret['UUID'] = unicod
+        ret['PORTFOLIOS'] = newPortfolios
+
+        return dumps(ret), 200
+
+    else:
+        ret = {}
+        ret['UUID'] = ''
+        ret['PORTFOLIOS'] = {}
+
+        return dumps(ret), 404
+
+ 
