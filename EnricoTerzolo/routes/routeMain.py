@@ -5,6 +5,8 @@ from myRefresh import *
 from sqlalchemy import Select
 from uuid import uuid4
 import json 
+from flask import jsonify
+
 from loginAttivi import LoginAttivi
 
 main_bp = Blueprint('main',__name__)
@@ -63,10 +65,11 @@ def login():
     print (LoginAttivi)
 
     if unicod == '':
-        return json.dumps(loginOK), 404
+        #return json.dumps(loginOK), 404         
+        return jsonify(loginOK),404
     else:
-        return json.dumps(loginOK), 200
-        
+        #return json.dumps(loginOK), 200
+        return jsonify(loginOK), 200
 @main_bp.route('/dashboard', methods = ['POST'])
 def showDashboard():
     
@@ -95,13 +98,13 @@ def showDashboard():
         ret['UUID'] = unicod
         ret['PORTFOLIOS'] = newPortfolios
 
-        return dumps(ret), 200
+        return jsonify(ret), 200
 
     else:
         ret = {}
         ret['UUID'] = ''
         ret['PORTFOLIOS'] = {}
 
-        return dumps(ret), 404
+        return jsonify(ret), 404
 
  

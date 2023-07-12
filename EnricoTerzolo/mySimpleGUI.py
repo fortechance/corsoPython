@@ -4,6 +4,7 @@ from myEngine import engine
 from login_paola import doLogin
 from myDashboard import doDashboard
 import json
+#from flask import request
 import requests
 
 from sqlalchemy import Select
@@ -19,18 +20,24 @@ while True:
     reqdata['PASSWORD'] = password
 
     ret = requests.post('http://127.0.0.1/main/login',json = json.dumps(reqdata))
+    if ret.status_code == 200:
+        risposta = ret.json()
+        myuuid = risposta['UUID']
+        break
+    else:
+        risposta = 'Errore: ' + str(ret.status_code)
+        myuuid = ''
+print(
+    risposta['USERNAME'],
+    risposta['PASSWORD'],
+    risposta['CODICE']
+    )
 
-    risposta = ret.json
-    ris = json.loads(risposta)
-    
+doDashboard(myuuid)
 
-
-if a== False:
-    username = 'p'
-    password = 'a'
-    codutente = '007'
-
-#print(username + ' '+password )    
-
-doDashboard(username, password, codutente)
+#doDashboard(
+#    risposta['USERNAME'],
+#    risposta['PASSWORD'],
+#    risposta['CODICE']
+#   )
 

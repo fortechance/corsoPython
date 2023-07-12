@@ -7,12 +7,26 @@ from mySintesi import Sintesi
 from myRefresh import *
 import datetime
 import requests
+from flask import json
 
-def doDashboard( user, passw,cutente):
-
+#def doDashboard( user, passw,cutente):
+def doDashboard(uuid):
 
     #formuliamo la richiesta:
 
+    reqdata = {}
+    reqdata['UUID'] = uuid
+
+    #eseguiamo la request
+    ret = requests.post('http://127.0.0.1/main/dashboard',json = json.dumps(reqdata))
+    if ret.status_code == 200:
+        risposta = ret.json()
+    else:
+        risposta = 'Errore: ' + str(ret.status_code)
+
+
+    print(risposta)
+    return
 
     ps.theme('green')
 
