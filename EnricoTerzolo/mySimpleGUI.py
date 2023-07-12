@@ -27,6 +27,7 @@ while True:
     else:
         risposta = 'Errore: ' + str(ret.status_code)
         myuuid = ''
+        print(risposta)
 print(
     risposta['USERNAME'],
     risposta['PASSWORD'],

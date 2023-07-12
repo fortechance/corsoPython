@@ -25,23 +25,27 @@ def doDashboard(uuid):
         risposta = 'Errore: ' + str(ret.status_code)
 
 
-    print(risposta)
-    return
+    print(risposta)  #documenro json con ciò che mi serve
+
+    
+    #valoriq = RefreshPorfolio(cutente, True)
+    listap = []
+    newuuid = ''
+
+    for k in risposta.keys():
+        
+        if k == 'UUID':
+            newuuid = risposta[k]
+            print(newuuid)
+            
+        elif k == 'PORTFOLIOS':
+            for p in risposta[k]:
+                print(p)
+                print(risposta[k][p])
+                listap.append(f"{p} - {risposta[k][p]['DESCRIZIONE']}")
+
 
     ps.theme('green')
-
-    valoriq = RefreshPorfolio(cutente, True)
-
-    listap = []
-    for q in valoriq:
-
-        chiave = q
-        descr = valoriq[q]['DESCRIZIONE']
-        owner = valoriq[q]['OWNER']
-
-        elemento = f'{chiave} - {descr}'
-
-        listap.append(elemento)
 
     col1= [
         [ps.Text(f'I Tuoi Portfolio:')],
@@ -86,7 +90,7 @@ def doDashboard(uuid):
                 #ps.popup(f'Slezionata chiave, {selected_key}')
 
                 porfolio_key = selected_key
-                wallets = RefreshWallet(porfolio_key)
+                wallets = GetRefreshWallet(porfolio_key, newuuid)
 
                 windows['-refreshW-'].Update(wallets)
                 windows['-refreshM-'].Update([])
@@ -139,4 +143,38 @@ def doDashboard(uuid):
     windows.close()
     pass
 
+
+def GetRefreshWallet(porfolio_key, myuuid):
+
+     #formuliamo la richiesta:
+
+    reqdata = {}
+    reqdata['UUID'] = myuuid
+    reqdata['PORTFOLIO'] = porfolio_key
+    #eseguiamo la request
+    ret = requests.post('http://127.0.0.1/main/wallet',json = json.dumps(reqdata))
+    if ret.status_code == 200:
+        risposta = ret.json()
+    else:
+        risposta = 'Errore: ' + str(ret.status_code)
+
+
+    print(risposta)  #documenro json con ciò che mi serve
+
+    
+    #valoriq = RefreshPorfolio(cutente, True)
+    listaw = []
+    newuuid = ''
+
+    for k in risposta.keys():
+        
+        if k == 'UUID':
+            newuuid = risposta[k]
+            print(newuuid)
+            
+        elif k == 'WALLETS':
+            for p in risposta[k]:
+                print(p)
+                print(risposta[k][p])
+                listaw.append(f"{p} - {risposta[k][p]['DESCRIZIONE']}")
 

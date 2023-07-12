@@ -29,7 +29,7 @@ def RefreshMouvements(idWallet, data = False):
     else:
         return movlist
 
-def RefreshWallet(idportfolio):
+def RefreshWallet(idportfolio, data = False):
 
     with engine.connect() as cn:
 
@@ -37,11 +37,22 @@ def RefreshWallet(idportfolio):
         walletlist = cn.execute(s).all()
 
         wallets = []
+        walletsq = {}
+
+        rownumber = 0
+
         for w in walletlist:
             wallets.append(f'{w[0]} - {w[1]}')
 
-    return wallets
+            walletsq[w[0]] = {}
+            walletsq[w[0]]['ID'] = w[0]
+            walletsq[w[0]]['DESCRIZIONE0'] = w[1]
 
+    if data:
+        return walletsq
+    else:
+        return wallets
+    
 
 def RefreshPorfolio(cut, query: bool = False):
 

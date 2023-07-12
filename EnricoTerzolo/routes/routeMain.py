@@ -13,7 +13,7 @@ main_bp = Blueprint('main',__name__)
 
 @main_bp.route('/', methods = ['GET'])
 def Index():
-    return 'Pagina di index, ti invito a effettuare il Login su http://127.0.0.1/login'
+    return 'Pagina di index, ti invito a effettuare il Login su http://127.0.0.1/main/login'
 
 @main_bp.route('/login', methods = ['POST'])
 def login():
@@ -70,26 +70,29 @@ def login():
     else:
         #return json.dumps(loginOK), 200
         return jsonify(loginOK), 200
+
+
+
 @main_bp.route('/dashboard', methods = ['POST'])
 def showDashboard():
     
     rdas = request
-    dati = rdas.json
+    dati = json.loads(rdas.json)
 
-    uuid = dati['UUID']
-    if uuid in LoginAttivi.keys():
-        utente = LoginAttivi[uuid]['CODICE']
+    myuuid = dati['UUID']
+    if myuuid in LoginAttivi.keys():
+        utente = LoginAttivi[myuuid]['CODICE']
     else:
         utente = 'SCONOSCIUTO' 
     db = {}
     db['portfolios'] = {}
 
-    if uuid in LoginAttivi.keys():
+    if myuuid in LoginAttivi.keys():
         print ('Dashboard allowed')
         unicod = str(uuid4())
-        vecchio = LoginAttivi[uuid]
+        vecchio = LoginAttivi[myuuid]
         LoginAttivi[unicod] = vecchio
-        foo = LoginAttivi.pop(uuid)
+        foo = LoginAttivi.pop(myuuid)
 
         # la return di un dizionario (quindi oggetto json) con ad esempio la lista dei portfolio di quell'utente
 
@@ -105,6 +108,42 @@ def showDashboard():
         ret['UUID'] = ''
         ret['PORTFOLIOS'] = {}
 
-        return jsonify(ret), 404
+        return jsonify(ret), 403
 
- 
+@main_bp.route('/wallet', methods = ['POST'])
+
+def showWallet():
+   
+    rdas = request
+    dati = json.loads(rdas.json)
+
+    myuuid = dati['UUID']
+    if myuuid in LoginAttivi.keys():
+        utente = LoginAttivi[myuuid]['CODICE']
+    else:
+        utente = 'SCONOSCIUTO' 
+    
+    myPortfoflio = dati['PORTFOLIO']
+
+    if myuuid in LoginAttivi.keys():
+        print ('Wallet allowed')
+        unicod = str(uuid4())
+        vecchio = LoginAttivi[myuuid]
+        LoginAttivi[unicod] = vecchio
+        foo = LoginAttivi.pop(myuuid)
+
+        newWallets = RefreshWallet(myPortfoflio, True)
+
+        ret = {}
+        ret['UUID'] = unicod
+        ret['WALLETS'] = newWallets
+
+        return jsonify(ret), 200
+
+    else:
+        ret = {}
+        ret['UUID'] = ''
+        ret['WALLETS'] = {}
+
+        return jsonify(ret), 403
+
