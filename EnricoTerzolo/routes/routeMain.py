@@ -22,7 +22,10 @@ def login():
     dati = rlogin.json
     print(dati)
 
-    dt = json.loads(dati)
+    dt = rlogin.json
+    print(dt)
+
+    #dt = json.loads(dati)   
 
     nome = dt['USER']
     pasw = dt['PASSWORD']
@@ -69,6 +72,7 @@ def login():
         return jsonify(loginOK),404
     else:
         #return json.dumps(loginOK), 200
+        print(jsonify(loginOK))
         return jsonify(loginOK), 200
 
 
