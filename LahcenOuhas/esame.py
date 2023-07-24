@@ -58,7 +58,7 @@ def main():
     window = sg.Window("Cocktail Maker", create_layout(), resizable=True, finalize=True)
 
     while True:
-        event, values = window.green()
+        event, values = window.read()
 
         if event == sg.WIN_CLOSED or event == "Esci":
             break
