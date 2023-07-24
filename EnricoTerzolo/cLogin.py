@@ -3,6 +3,8 @@
 from flask import request
 from flask import json
 from flask import jsonify
+import requests
+
 
 class ApiBase:
 
@@ -15,7 +17,7 @@ class cLogin(ApiBase):
 
     def __init__(self, url, rotta, user, password,uuidbase, metodo):
 
-        super.__init__(self, url, uuidbase )
+        super().__init__( url, uuidbase )
         self.user = user
         self.password = password
         self.rotta = rotta
@@ -23,12 +25,13 @@ class cLogin(ApiBase):
    
     def CallLogin(self):
 
-        myURI = super.urlBase + self.rotta
+        myURI = self.urlBase + '/' + self.rotta
         myData = {}
-        myData['USERNAME'] = self.user
+        myData['USER'] = self.user
         myData['PASSWORD'] = self.password
 
-        risposta = request.post(myURI, json=json.dumps(myData))
+        risposta = requests.post(myURI, json = json.dumps(myData))
+        # risposta = request.post(myURI, json=json.dumps(myData))
 
         if risposta.status_code == 200:
 
