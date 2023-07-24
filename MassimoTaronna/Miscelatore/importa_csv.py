@@ -1,28 +1,20 @@
 import csv
-import os
 
-import os
-
-def main():
-    # Definisci il percorso della directory dei file da eseguire
-    directory_path = "C:/Users/massi/Desktop/corsoPython/MassimoTaronna/Miscelatore"
-
-
-def import_csv(file_path):
+def import_csv("./dati.csv"):
     fields = []
     records = []
 
-    with open("./prodotti.csv", newline="") as csvfile:
-        reader = csv.reader(csvfile, delimiter=";")
+    with open("./dati.csv", newline='') as csvfile:
+        reader = csv.reader(csvfile)
         fields = next(reader)  # Legge la prima riga come intestazione dei campi
 
         for row in reader:
-            records.append(row)
+        records.append(row)
 
     return fields, records
 
 def main():
-    file_path = "prodotti.csv"
+    file_path = "dati.csv"
     fields, records = import_csv(file_path)
 
     print("Campi:")
