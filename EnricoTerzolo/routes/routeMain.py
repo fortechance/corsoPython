@@ -1,25 +1,34 @@
-from flask import Blueprint,  request
+from flask import Blueprint,  request, jsonify
 from myEngine import engine
 from myTables import *
+from myRefresh import * 
 from sqlalchemy import Select
 from uuid import uuid4
-from json import dumps
+import json 
+from flask import jsonify
+
 from loginAttivi import LoginAttivi
 
 main_bp = Blueprint('main',__name__)
 
 @main_bp.route('/', methods = ['GET'])
 def Index():
-    return 'Pagina di index, ti invito a effettuare il Login su http://127.0.0.1/login'
+    return 'Pagina di index, ti invito a effettuare il Login su http://127.0.0.1/main/login'
 
 @main_bp.route('/login', methods = ['POST'])
 def login():
     
     rlogin = request
     dati = rlogin.json
+    print(dati)
 
-    nome = dati['USER']
-    pasw = dati['PASSWORD']
+    dt = rlogin.json
+    print(dt)
+
+    #dt = json.loads(dati)   
+
+    nome = dt['USER']
+    pasw = dt['PASSWORD']
 
     slogin = Select(user).where (user.c.NOME == nome).where(user.c.PASSWORD == pasw)
     
@@ -59,39 +68,86 @@ def login():
     print (LoginAttivi)
 
     if unicod == '':
-        return dumps(loginOK), 404
+        #return json.dumps(loginOK), 404         
+        return jsonify(loginOK),404
     else:
-        return dumps(loginOK), 200
-        
+        #return json.dumps(loginOK), 200
+        print(jsonify(loginOK))
+        return jsonify(loginOK), 200
+
+
+
 @main_bp.route('/dashboard', methods = ['POST'])
 def showDashboard():
     
     rdas = request
-    dati = rdas.json
+    dati = json.loads(rdas.json)
 
-    uuid = dati['UUID']
-    if uuid in LoginAttivi.keys():
-        utente = LoginAttivi[uuid]['CODICE']
+    myuuid = dati['UUID']
+    if myuuid in LoginAttivi.keys():
+        utente = LoginAttivi[myuuid]['CODICE']
     else:
         utente = 'SCONOSCIUTO' 
     db = {}
     db['portfolios'] = {}
 
-
-    if uuid in LoginAttivi.keys():
+    if myuuid in LoginAttivi.keys():
         print ('Dashboard allowed')
         unicod = str(uuid4())
-        vecchio = LoginAttivi[uuid]
+        vecchio = LoginAttivi[myuuid]
         LoginAttivi[unicod] = vecchio
-        foo = LoginAttivi.pop(uuid)
+        foo = LoginAttivi.pop(myuuid)
 
-        return 'Dasboard OK ' + unicod + utente, 200
+        # la return di un dizionario (quindi oggetto json) con ad esempio la lista dei portfolio di quell'utente
+
+        newPortfolios = RefreshPorfolio(utente, True)
+        ret = {}
+        ret['UUID'] = unicod
+        ret['PORTFOLIOS'] = newPortfolios
+
+        return jsonify(ret), 200
+
     else:
-        print('Dashboard Forbidden')
-        return 'Dashboard KO' + utente, 403
- 
+        ret = {}
+        ret['UUID'] = ''
+        ret['PORTFOLIOS'] = {}
 
+        return jsonify(ret), 403
+
+@main_bp.route('/wallet', methods = ['POST'])
+
+def showWallet():
+   
+    rdas = request
+    dati = json.loads(rdas.json)
+
+    myuuid = dati['UUID']
+    if myuuid in LoginAttivi.keys():
+        utente = LoginAttivi[myuuid]['CODICE']
+    else:
+        utente = 'SCONOSCIUTO' 
     
-    
-    
-    pass
+    myPortfoflio = dati['PORTFOLIO']
+
+    if myuuid in LoginAttivi.keys():
+        print ('Wallet allowed')
+        unicod = str(uuid4())
+        vecchio = LoginAttivi[myuuid]
+        LoginAttivi[unicod] = vecchio
+        foo = LoginAttivi.pop(myuuid)
+
+        newWallets = RefreshWallet(myPortfoflio, True)
+
+        ret = {}
+        ret['UUID'] = unicod
+        ret['WALLETS'] = newWallets
+
+        return jsonify(ret), 200
+
+    else:
+        ret = {}
+        ret['UUID'] = ''
+        ret['WALLETS'] = {}
+
+        return jsonify(ret), 403
+

@@ -1,0 +1,8 @@
+Codice;Nome;Cognome;
+001;Maria;Bianchi;
+002;Giacomo;Rossi;
+003;Luca;Verdi;
+004;Esmeralda;Grosso;
+005;Paolino;Piccoli;
+006;Gennaro;Fabbri;
+007;Fatima;Trevisan;

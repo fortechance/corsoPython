@@ -6,19 +6,50 @@ from myNewPortfolio import doNewPortfolio, doNewWallet, doNewMouvement
 from mySintesi import Sintesi
 from myRefresh import *
 import datetime
+import requests
+from flask import json
+
+#def doDashboard( user, passw,cutente):
+def doDashboard(uuid):
+
+    #formuliamo la richiesta:
+
+    reqdata = {}
+    reqdata['UUID'] = uuid
+
+    #eseguiamo la request
+    ret = requests.post('http://127.0.0.1/main/dashboard',json = json.dumps(reqdata))
+    if ret.status_code == 200:
+        risposta = ret.json()
+    else:
+        risposta = 'Errore: ' + str(ret.status_code)
 
 
-
-def doDashboard( user, passw,cutente):
+    print(risposta)  #documenro json con ciò che mi serve
 
     
-    ps.theme('green')
+    #valoriq = RefreshPorfolio(cutente, True)
+    listap = []
+    newuuid = ''
 
-    valori = RefreshPorfolio(cutente)
+    for k in risposta.keys():
+        
+        if k == 'UUID':
+            newuuid = risposta[k]
+            print(newuuid)
+            
+        elif k == 'PORTFOLIOS':
+            for p in risposta[k]:
+                print(p)
+                print(risposta[k][p])
+                listap.append(f"{p} - {risposta[k][p]['DESCRIZIONE']}")
+
+
+    ps.theme('green')
 
     col1= [
         [ps.Text(f'I Tuoi Portfolio:')],
-        [ps.Listbox((valori), size=(40,15), key='-refreshP-', enable_events=True, select_mode= 'listbox')]
+        [ps.Listbox((listap), size=(40,15), key='-refreshP-', enable_events=True, select_mode= 'listbox')]
     ]
     
     col2= [
@@ -59,7 +90,7 @@ def doDashboard( user, passw,cutente):
                 #ps.popup(f'Slezionata chiave, {selected_key}')
 
                 porfolio_key = selected_key
-                wallets = RefreshWallet(porfolio_key)
+                wallets = GetRefreshWallet(porfolio_key, newuuid)
 
                 windows['-refreshW-'].Update(wallets)
                 windows['-refreshM-'].Update([])
@@ -112,4 +143,38 @@ def doDashboard( user, passw,cutente):
     windows.close()
     pass
 
+
+def GetRefreshWallet(porfolio_key, myuuid):
+
+     #formuliamo la richiesta:
+
+    reqdata = {}
+    reqdata['UUID'] = myuuid
+    reqdata['PORTFOLIO'] = porfolio_key
+    #eseguiamo la request
+    ret = requests.post('http://127.0.0.1/main/wallet',json = json.dumps(reqdata))
+    if ret.status_code == 200:
+        risposta = ret.json()
+    else:
+        risposta = 'Errore: ' + str(ret.status_code)
+
+
+    print(risposta)  #documenro json con ciò che mi serve
+
+    
+    #valoriq = RefreshPorfolio(cutente, True)
+    listaw = []
+    newuuid = ''
+
+    for k in risposta.keys():
+        
+        if k == 'UUID':
+            newuuid = risposta[k]
+            print(newuuid)
+            
+        elif k == 'WALLETS':
+            for p in risposta[k]:
+                print(p)
+                print(risposta[k][p])
+                listaw.append(f"{p} - {risposta[k][p]['DESCRIZIONE']}")
 

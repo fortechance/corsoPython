@@ -1,0 +1,26 @@
+Titolo programma: La fabbrica del sorriso,
+Tagline: un contributo alla spensieratezza.
+Funzione: Gereratore di cocktails
+
+Verificare che
+
+PySimpleGUI installato nel tuo ambiente Python. installato con PIP
+
+Creato un file Python (ad esempio, cocktail_maker.py) e importate le librerie necessarie.
+
+
+Definita la lista di cocktail e i loro ingredienti in due files CSV dedicati con le ricette dei cocktails e la lista degli ingredienti
+con le quantità. Le quantità saranno modificabili dal programma in modo che le modifiche siano persistenti.
+Definita la quantità iniziale degli ingredienti disponibilidue file CSV chiamati ingredients.csv e cocktails.csv.
+
+Per caricare l'elenco degli ingredienti e dei cocktail da due file CSV distinti, useremo la libreria csv e os di Python. Creeremo due file CSV separati, uno per gli ingredienti e uno per i cocktail, I due file CSV chiamati ingredients.csv e cocktails.csv. il codice leggerà questi file CSV al momento dell'esecuzione.
+
+Il metodo os.path.abspath(__file__) restituisce il percorso assoluto del file Python in esecuzione, indipendentemente dal sistema operativo. Quindi, quando usiamo os.path.join per costruire il percorso dei file CSV, il codice funzionerà correttamente sia su macOS che su Windows.
+
+Quindi, non dovremo avere problemi nel trovare i file CSV sia su macOS che su Windows utilizzando il codice con il percorso assoluto.
+        
+Crea l'interfaccia grafica utilizzando PySimpleGUI.
+
+Nella GUI ci saranno due elenchi di cocktail: "Cocktail preparabili" e "Cocktail non preparabili". I cocktail che hanno ingredienti sufficienti nello stock saranno elencati in "Cocktail preparabili", mentre quelli con ingredienti mancanti saranno elencati in "Cocktail non preparabili". Inoltre, c'è un input per aggiungere quantità di ingredienti nello stock. Quando si preme il pulsante "Aggiungi", la tabella delle scorte verrà aggiornata e gli elenchi dei cocktail preparabili e non preparabili saranno aggiornati in base alle nuove quantità degli ingredienti.
+
+Il programma utilizzerà la GUI di PySimpleGUI per mostrare la lista dei cocktail disponibili e consentire all'utente di selezionare uno di essi. Cliccando sul pulsante "Prepara cocktail", il programma verificherà se gli ingredienti necessari per il cocktail sono disponibili nelle scorte. Se gli ingredienti sono presenti, verranno utilizzati per preparare il cocktail e le quantità verranno ridotte di una unità nelle scorte. Se uno degli ingredienti è esaurito, il programma lo segnalerà. L'utente può uscire dal programma cliccando sul pulsante "Esci" o chiudendo la finestra.
