@@ -1,45 +1,44 @@
-import PySimpleGUI
-from myTables import *
+# import PySimpleGUI
+from myTables import * 
 from myEngine import engine
 from login_paola import doLogin
 from myDashboard import doDashboard
+import json
+#from flask import request
+import requests
 
 from sqlalchemy import Select
 
 # devo fare un login, poi il resto è di sonseguenza
-a=False
 
-while a:
+while True:
 
     username, password = doLogin()
 
-    slogin = Select(user).where(user.c.NOME == username and user.c.PASSWORD == password)
-    with engine.connect() as cn:
-        try:
-            results = cn.execute(slogin).one()
-            login = True
-            codutente = results.COD_UTENTE
-            print('login eseguito')
-            break
+    reqdata = {}
+    reqdata['USER'] = username
+    reqdata['PASSWORD'] = password
 
-        except: 
+    ret = requests.post('http://127.0.0.1/main/login',json = json.dumps(reqdata))
+    if ret.status_code == 200:
+        risposta = ret.json()
+        myuuid = risposta['UUID']
+        break
+    else:
+        risposta = 'Errore: ' + str(ret.status_code)
+        myuuid = ''
+        print(risposta)
+print(
+    risposta['USERNAME'],
+    risposta['PASSWORD'],
+    risposta['CODICE']
+    )
 
-            login = False
-            print ('login fallito')
-            username = ''
-            password = ''
-            codutente = ''
-            continue    
+doDashboard(myuuid)
 
-
-    # dobbiamo portarci appresso chi ha fatto il login.
-
-if a== False:
-    username = 'p'
-    password = 'a'
-    codutente = '007'
-
-print(username + ' '+password )    
-
-doDashboard(username, password, codutente)
+#doDashboard(
+#    risposta['USERNAME'],
+#    risposta['PASSWORD'],
+#    risposta['CODICE']
+#   )
 

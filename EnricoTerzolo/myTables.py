@@ -71,7 +71,7 @@ tipowallet = Table(
 causale = Table(
     'Causali',
     metaobj,
-    Column('CODICE', String(3), primary_key = True),
+    Column('CODICE', CHAR(3), primary_key = True),
     Column('DESCRIZIONE', String(25), nullable = False),
     Column('SEGNO', CHAR, nullable = False)
 )
@@ -100,7 +100,7 @@ movimento = Table(
     metaobj,
     Column('ID',Integer, primary_key=True),
     Column('IMPORTO',Numeric(10,2) ),
-    Column('CAUSALE', String(5), ForeignKey('Causali.CODICE')),
+    Column('CAUSALE', CHAR(3), ForeignKey('Causali.CODICE')),
     Column('DTMOVIMENTO', DateTime, nullable = False),
     Column('DESCRIZIONE', String(25), nullable = False),
     Column('IDWALLET',Integer, ForeignKey('Wallets.ID') )
